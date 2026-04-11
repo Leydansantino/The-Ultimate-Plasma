@@ -1,66 +1,84 @@
 # The Ultimate Plasma
-
-Tema completo para KDE Plasma que unifica la apariencia de aplicaciones Qt, GTK3, GTK4 y Libadwaita bajo un mismo lenguaje visual, usando Klassy para las decoraciones de ventana y el estilo de aplicaciones.
-
-**Compatible con Aurora 43 / Fedora Kinoite — Plasma 6.6**
-
+ 
+A complete theme for KDE Plasma that unifies the look of Qt, GTK3, GTK4, and Libadwaita applications under a single visual language. Uses Klassy for window decorations and application style, ensuring consistent button icons across all apps — including GNOME and Chromium-based browsers.
+ 
+**Compatible with Aurora 43 / Fedora Kinoite — Plasma 6.6**
+ 
 ---
-
-## Qué incluye
-
-- **Klassy** — decoraciones de ventana y estilo de aplicaciones Qt (botones homogéneos en todas las apps)
-- **GTK 3 y GTK 4 / Libadwaita** — apps de GNOME y Chromium siguen el esquema de color del sistema
-- **Plasma Desktop Theme** — tema de panel, widgets y bandeja del sistema
-- **Look and Feel** — temas globales oscuro y claro listos para alternar
-- **Esquemas de color** — `TheUltimatePlasmaDark` y `TheUltimatePlasmaLight`
-- **Fuente Inter** — tipografía variable para todo el sistema
-- **Konsole adaptativo** — el terminal toma el color de fondo y texto del tema activo automáticamente al iniciar sesión
-
+ 
+## What's included
+ 
+- **Klassy** — window decorations and Qt application style (consistent button icons everywhere)
+- **GTK 3 & GTK 4 / Libadwaita** — GNOME apps and Chromium follow the system color scheme
+- **Plasma Desktop Theme** — panel, widgets, and system tray styling
+- **Look and Feel** — dark and light global themes ready to switch between
+- **Color schemes** — `TheUltimatePlasmaDark` and `TheUltimatePlasmaLight`
+- **Inter font** — variable font used as the system-wide typeface
+- **Adaptive Konsole** — terminal automatically picks background and foreground colors from the active theme on login
+ 
 ---
-
-## Instalación
-
+ 
+## Installation
+ 
 ```bash
-git clone https://github.com/TU_USUARIO/TheUltimatePlasma
-cd TheUltimatePlasma
+git clone https://github.com/Leydansantino/The-Ultimate-Plasma
+cd The-Ultimate-Plasma
 chmod +x install.sh
 ./install.sh
 ```
-
-Cierra sesión y vuelve a entrar para aplicar todos los cambios.
-
+ 
+Log out and back in to apply all changes.
+ 
 ---
-
-## Aplicar el tema
-
-Después de iniciar sesión:
-
-1. **System Settings → Global Theme** → elige `The Ultimate Plasma Dark` o `The Ultimate Plasma Light`
-   > Aplica siempre desde esta pantalla, no desde Quick Settings
-2. **System Settings → Window Decorations** → selecciona `Klassy`
-3. **System Settings → Application Style** → selecciona `Klassy`
-
-Para alternar entre oscuro y claro en el futuro, basta con cambiar el Global Theme desde System Settings.
-
+ 
+## Applying the theme
+ 
+After logging back in:
+ 
+1. **System Settings → Global Theme** → choose `The Ultimate Plasma Dark` or `The Ultimate Plasma Light`
+   > Always apply from this screen first, not from Quick Settings
+2. **System Settings → Window Decorations** → select `Klassy`
+3. **System Settings → Application Style** → select `Klassy`
+ 
+To switch between dark and light, just change the Global Theme from System Settings at any time.
+ 
 ---
-
-## Konsole adaptativo
-
-El script `sync_konsole.sh` lee los colores del tema activo de Plasma y los inyecta en el perfil de Konsole `Adaptive-Plasma`. Se ejecuta automáticamente al iniciar sesión.
-
-Si cambias de tema oscuro a claro (o viceversa) durante la sesión, ejecuta manualmente:
-
+ 
+## Uninstall
+ 
+```bash
+chmod +x uninstall.sh
+./uninstall.sh
+```
+ 
+The Inter font will not be removed. The desktop layout config will be backed up, not deleted.
+ 
+---
+ 
+## Adaptive Konsole
+ 
+`sync_konsole.sh` reads the active Plasma theme colors and injects them into the `Adaptive-Plasma` Konsole profile. It runs automatically on login via autostart.
+ 
+If you switch between dark and light during a session, run it manually:
+ 
 ```bash
 ~/.local/bin/sync_konsole.sh
 ```
-
+ 
 ---
-
-## Estructura del repositorio
-
+ 
+## Installing Klassy standalone
+ 
+If you only want Klassy without the full theme, see the [klassy/README.md](klassy/README.md).
+ 
+---
+ 
+## Repository structure
+ 
 ```
-TheUltimatePlasma/
+The-Ultimate-Plasma/
 ├── install.sh
+├── uninstall.sh
 ├── README.md
 ├── Inter-VariableFont_opsz,wght.ttf
 ├── Inter-Italic-VariableFont_opsz,wght.ttf
@@ -70,13 +88,10 @@ TheUltimatePlasma/
 ├── klassyrc
 ├── plasma-org.kde.plasma.desktop-appletsrc
 ├── sync_konsole.sh
-├── klassy/                          ← binarios de Klassy precompilados
-│   ├── lib64/
-│   ├── plugins/
-│   └── share/
+├── klassy/                          ← Klassy prebuilt binaries
 ├── The-Ultimate-Plasma/             ← Plasma Desktop Theme
-├── The Ultimate Plasma Dark/        ← Look and Feel oscuro
-├── The Ultimate Plasma Light/       ← Look and Feel claro
+├── The Ultimate Plasma Dark/        ← Dark Look and Feel
+├── The Ultimate Plasma Light/       ← Light Look and Feel
 ├── gtk-3.0/
 │   └── gtk.css
 └── gtk-4.0/
@@ -84,7 +99,7 @@ TheUltimatePlasma/
     ├── libadwaita.css
     └── libadwaita-tweaks.css
 ```
-
+ 
 ---
 
 ## Credits
