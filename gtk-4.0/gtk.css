@@ -1,0 +1,67 @@
+@import url('libadwaita.css');
+@import url('libadwaita-tweaks.css');
+@import 'colors.css';
+
+/* ========================================================================= */
+/* 1. MAPEO PURO DE VARIABLES (KDE PLASMA -> LIBADWAITA)                     */
+/* ========================================================================= */
+
+@define-color window_bg_color @content_view_bg_breeze;
+@define-color window_fg_color @theme_fg_color_breeze;
+@define-color headerbar_bg_color @theme_titlebar_background_breeze;
+@define-color headerbar_fg_color @theme_titlebar_foreground_breeze;
+@define-color headerbar_backdrop_color @theme_titlebar_background_backdrop_breeze;
+
+@define-color view_bg_color @content_view_bg_breeze;
+@define-color view_fg_color @theme_text_color_breeze;
+
+/* AÑADIDA: variable que faltaba */
+@define-color sidebar_bg_color @theme_bg_color_breeze;
+@define-color sidebar_fg_color @theme_fg_color_breeze;
+@define-color secondary_sidebar_bg_color @theme_bg_color_breeze;
+
+@define-color card_bg_color rgba(0, 0, 0, 0.03);
+@define-color card_fg_color @theme_fg_color_breeze;
+@define-color popover_bg_color @theme_bg_color_breeze;
+@define-color popover_fg_color @theme_fg_color_breeze;
+@define-color dialog_bg_color @theme_bg_color_breeze;
+@define-color dialog_fg_color @theme_fg_color_breeze;
+
+@define-color accent_color @theme_selected_bg_color_breeze;
+@define-color accent_bg_color @theme_selected_bg_color_breeze;
+@define-color accent_fg_color @theme_selected_fg_color_breeze;
+@define-color destructive_color @error_color_breeze;
+@define-color destructive_bg_color @error_color_breeze;
+@define-color destructive_fg_color #ffffff;
+@define-color success_color @success_color_breeze;
+@define-color warning_color @warning_color_breeze;
+@define-color error_color @error_color_breeze;
+
+/* ========================================================================= */
+/* 2. LIMPIEZA VISUAL                                                        */
+/* ========================================================================= */
+
+headerbar {
+    box-shadow: none;
+    border-bottom: none;
+}
+
+separator, .separator, window > separator {
+    background-color: transparent !important;
+    border: none !important;
+    opacity: 0 !important;
+}
+
+/* ========================================================================= */
+/* 3. SIDEBAR                                                                */
+/* ========================================================================= */
+
+.navigation-sidebar, .sidebar, placessidebar {
+    background-color: @sidebar_bg_color !important;
+    border-right: none !important;
+}
+
+.navigation-sidebar row:selected, .sidebar row:selected, placessidebar row:selected {
+    background-color: @accent_bg_color !important;
+    color: @accent_fg_color !important;
+}

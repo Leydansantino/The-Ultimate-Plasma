@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+NoDisplay=true
+X-KDE-AliasFor=systemsettings
+Exec=kcmshell6 kcm_klassydecoration
+Icon=preferences-system-windows
+Name=Klassy: Window Decoration
+Name[fr]=Klassy: Décoration de fenêtre

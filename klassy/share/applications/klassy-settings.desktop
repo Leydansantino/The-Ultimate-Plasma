@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Terminal=false
+Exec=klassy-settings %f
+TryExec=klassy-settings
+Name=Klassy Settings
+Name[fr]=Paramètres Klassy
+Icon=klassy-settings
+Categories=Settings
