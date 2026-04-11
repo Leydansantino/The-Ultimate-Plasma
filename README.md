@@ -87,7 +87,9 @@ TheUltimatePlasma/
 
 ---
 
-## Créditos
+## Credits
 
-- [Klassy](https://github.com/paulmcauley/klassy) por Paul McAuley
-- Fuente [Inter](https://rsms.me/inter/) por Rasmus Andersson
+- [Klassy](https://github.com/paulmcauley/klassy) by Paul McAuley
+- Fuente [Inter](https://rsms.me/inter/) by Rasmus Andersson
+- Utterly Round (https://github.com/HimDek/Utterly-Round-Plasma-Style/tree/master/desktoptheme) by Him Dek
+- MacSonoma-Light (https://github.com/vinceliuice/MacSonoma-kde/tree/main/plasma/desktoptheme/MacSonoma-Light) by Vince Liuice
