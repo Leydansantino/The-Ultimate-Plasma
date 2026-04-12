@@ -25,16 +25,7 @@ A complete theme for KDE Plasma that unifies the look of Qt, GTK3, GTK4, and Lib
  
 ### Step 1 — Install Klassy
  
-If you are on **Aurora 43 / Plasma 6.6**, use the prebuilt binaries:
- 
-```bash
-git clone https://github.com/Leydansantino/The-Ultimate-Plasma
-cd The-Ultimate-Plasma/klassy
-chmod +x install-prebuilt.sh
-./install-prebuilt.sh
-```
- 
-On a **different Plasma version**, compile from source instead (requires [Distrobox](https://distrobox.it)):
+(requires [Distrobox](https://distrobox.it)):
  
 ```bash
 chmod +x install-from-source.sh
