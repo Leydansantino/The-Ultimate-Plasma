@@ -23,7 +23,16 @@ The Ultimate Plasma does NOT modify your system.
 
 ### Light Mode
 ![Light Mode Preview](./screenshots/light.png)
- 
+
+> [!NOTE]
+> When a GTK4/Libadwaita window loses focus, the left sidebar may revert to a neutral grey tone instead of keeping the active color tint. This is a known Libadwaita limitation — the backdrop state is handled internally in C code and cannot be overridden via `gtk.css`. It does not affect functionality and is subtle enough to be considered acceptable behavior.
+
+---
+
+## 🎨 How It Works — One Source of Truth
+
+Unlike traditional themes that hardcode colors, The Ultimate Plasma is fully adaptive. The KDE Plasma color scheme acts as a single source of truth: every time you switch accent color or change between light and dark mode in System Settings, Qt apps, GTK3, GTK4/Libadwaita apps, and Chromium-based browsers all update automatically — no manual intervention needed. This is achieved by injecting Breeze color scheme variables directly into `gtk.css`, bridging the gap between the Qt and GTK worlds natively.
+
 ---
  
 ## What's included
@@ -83,6 +92,8 @@ If you want the GNOME/MacOS type layout, you can modify it in the panel settings
 ---
 
 ## Final Polishing & Fixes
+
+> **How it works:** The `gtk.css` file injects KDE Plasma's Breeze color variables directly into the browser via GTK3. This means the tab bar, toolbar, and address bar automatically follow your active light or dark color scheme — including accent color changes — without any browser extension or manual configuration.
 
 ### 🌐 Chromium-based Browsers (Chrome, Brave, Edge)
 To ensure your browser matches the system's aesthetic and follows the light/dark mode adaptive colors:
@@ -195,9 +206,20 @@ The-Ultimate-Plasma/
  
 ---
 
+## 🧬 The Hybrid Plasma Theme — Utterly-Sonoma
+
+The included Plasma Desktop Theme is a handcrafted hybrid between two themes:
+
+- **Utterly Round** by HimDek — provides the visual language: 16px rounded corners, adaptive translucent blur, and full color-scheme responsiveness
+- **MacSonoma-Light** by Vince Liuice — provides the structural logic: correct light/dark mode handling, lock screen and logout dialog contrast
+
+Neither theme alone achieved the goal. Utterly Round lacks proper light mode support for system dialogs. MacSonoma has the correct logic but fixed white colors. The hybrid takes the SVG assets from Utterly Round and the semantic structure from MacSonoma, with the `solid/` folder removed to allow full color tinting.
+
+---
+
 ## Credits
 
 - [Klassy](https://github.com/paulmcauley/klassy) by Paul McAuley
 - Fuente [Inter](https://rsms.me/inter/) by Rasmus Andersson
-- Utterly Round (https://github.com/HimDek/Utterly-Round-Plasma-Style/tree/master/desktoptheme) by Him Dek
+- Utterly Round (https://github.com/HimDek/Utterly-Round-Plasma-Style/tree/master/desktoptheme) by HimDek
 - MacSonoma-Light (https://github.com/vinceliuice/MacSonoma-kde/tree/main/plasma/desktoptheme/MacSonoma-Light) by Vince Liuice
