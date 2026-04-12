@@ -28,6 +28,8 @@ A complete theme for KDE Plasma that unifies the look of Qt, GTK3, GTK4, and Lib
 (requires [Distrobox](https://distrobox.it)):
  
 ```bash
+git clone https://github.com/Leydansantino/The-Ultimate-Plasma
+cd The-Ultimate-Plasma/klassy
 chmod +x install-from-source.sh
 ./install-from-source.sh
 ```
@@ -37,6 +39,7 @@ See [klassy/README.md](klassy/README.md) for full details on both options.
 ### Step 2 — Install the theme
  
 ```bash
+cd
 cd The-Ultimate-Plasma
 chmod +x install.sh
 ./install.sh
