@@ -33,7 +33,7 @@ fi
 echo ""
 
 # ── 1. Fuente Inter ───────────────────────────────────────────────────────────
-echo "→ [1/8] Instalando fuente Inter..."
+echo "→ [1/7] Instalando fuente Inter..."
 mkdir -p ~/.local/share/fonts
 cp "$SCRIPT_DIR/Inter-VariableFont_opsz,wght.ttf" ~/.local/share/fonts/
 cp "$SCRIPT_DIR/Inter-Italic-VariableFont_opsz,wght.ttf" ~/.local/share/fonts/
@@ -41,7 +41,7 @@ fc-cache -f ~/.local/share/fonts
 echo "   ✔ Fuente Inter instalada"
 
 # ── 2. Configuración de Klassy ───────────────────────────────────────────────
-echo "→ [2/8] Aplicando configuración de Klassy (16px y botones)..."
+echo "→ [2/7] Aplicando configuración de Klassy (16px y botones)..."
 # Validamos y creamos la ruta correcta para Klassy
 mkdir -p ~/.config/klassy
 
@@ -53,14 +53,14 @@ else
 fi
 
 # ── 3. Esquemas de color ──────────────────────────────────────────────────────
-echo "→ [3/8] Instalando esquemas de color..."
+echo "→ [3/7] Instalando esquemas de color..."
 mkdir -p ~/.local/share/color-schemes
 cp "$SCRIPT_DIR/TheUltimatePlasmaDark.colors"  ~/.local/share/color-schemes/
 cp "$SCRIPT_DIR/TheUltimatePlasmaLight.colors" ~/.local/share/color-schemes/
 echo "   ✔ Esquemas de color instalados"
 
 # ── 4. Plasma Desktop Theme ───────────────────────────────────────────────────
-echo "→ [4/8] Instalando Plasma Desktop Theme..."
+echo "→ [4/7] Instalando Plasma Desktop Theme..."
 mkdir -p ~/.local/share/plasma/desktoptheme
 cp -r "$SCRIPT_DIR/The-Ultimate-Plasma" ~/.local/share/plasma/desktoptheme/
 echo "   ✔ Plasma Desktop Theme instalado"
@@ -69,14 +69,14 @@ echo "   ↻ Actualizando la caché de configuración de KDE..."
 kbuildsycoca6 --noincremental &> /dev/null
 
 # ── 5. Look and Feel ──────────────────────────────────────────────────────────
-echo "→ [5/8] Instalando Look and Feel (oscuro y claro)..."
+echo "→ [5/7] Instalando Look and Feel (oscuro y claro)..."
 mkdir -p ~/.local/share/plasma/look-and-feel
 cp -r "$SCRIPT_DIR/The Ultimate Plasma Dark"  ~/.local/share/plasma/look-and-feel/
 cp -r "$SCRIPT_DIR/The Ultimate Plasma Light" ~/.local/share/plasma/look-and-feel/
 echo "   ✔ Look and Feel instalado"
 
 # ── 6. GTK ────────────────────────────────────────────────────────────────────
-echo "→ [6/8] Instalando temas GTK 3 y GTK 4 / Libadwaita..."
+echo "→ [6/7] Instalando temas GTK 3 y GTK 4 / Libadwaita..."
 mkdir -p ~/.config/gtk-3.0
 mkdir -p ~/.config/gtk-4.0
 cp "$SCRIPT_DIR/gtk-3.0/gtk.css"               ~/.config/gtk-3.0/gtk.css
@@ -92,7 +92,7 @@ flatpak override --user --filesystem=xdg-config/gtk-3.0:ro
 flatpak override --user --filesystem=xdg-config/gtk-4.0:ro
 
 # ── 7. Konsole — esquema adaptativo ──────────────────────────────────────────
-echo "→ [7/8] Instalando esquema de Konsole y script adaptativo..."
+echo "→ [7/7] Instalando esquema de Konsole y script adaptativo..."
 mkdir -p ~/.local/share/konsole
 cp "$SCRIPT_DIR/Adaptive-Plasma.colorscheme" ~/.local/share/konsole/
 
