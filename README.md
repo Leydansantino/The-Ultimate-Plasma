@@ -62,14 +62,23 @@ To switch between dark and light, just change the Global Theme from System Setti
  
 ---
  
-## Uninstall
+## Recommended: Colloid Icon Theme
  
-```bash
-chmod +x uninstall.sh
-./uninstall.sh
-```
+To achieve the full aesthetic, install the **Colloid** icon theme — no terminal needed:
  
-The Inter font will not be removed. The desktop layout config will be backed up, not deleted.
+1. Open **System Settings → Icons**
+2. Click **Get New Icons...** at the bottom
+3. Search for **Colloid** and install your preferred variant (e.g. Colloid-purple)
+ 
+Then configure Klassy to use it:
+ 
+4. Open **System Settings → Window Decorations** → click the pencil icon next to Klassy
+5. Go to **System Icon Generation** and set:
+   - **Klassy icon theme inherits** → `Colloid-Light`
+   - **Klassy Dark icon theme inherits** → `Colloid-Dark`
+6. Click **Generate System Icons** and apply
+7. Return to icons, change any icon pack, and return again to the Klassy icon pack to load correctly
+ 
  
 ---
  
@@ -82,24 +91,21 @@ If you switch between dark and light during a session, run it manually:
 ```bash
 ~/.local/bin/sync_konsole.sh
 ```
-
---- 
-
-## 🎨 Recommended Icons
-
-To achieve the full aesthetic shown in the screenshots, I highly recommend the **Colloid Icon Theme**. You don't need to use the terminal or external scripts for this:
-
-1. Open **System Settings** → **Icons**.
-2. Click on the **Get New Icons...** (Obtener novedades) button at the bottom.
-3. Search for **"Colloid"**.
-4. Install the **Colloid-purple** (or your favorite variant) by clicking "Install".
-5. Select it from your icon list, click **Apply**, and enjoy the total transformation!
-
----
  
 ## Installing Klassy standalone
  
 If you only want Klassy without the full theme, see the [klassy/README.md](klassy/README.md).
+
+---
+ 
+## Uninstall
+ 
+```bash
+chmod +x uninstall.sh
+./uninstall.sh
+```
+ 
+The Inter font will not be removed. The desktop layout config will be backed up, not deleted.
  
 ---
  
