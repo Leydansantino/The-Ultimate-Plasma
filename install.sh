@@ -2,7 +2,7 @@
 
 # The Ultimate Plasma — Instalador
 # Compatible con Aurora 43 / Fedora Kinoite — Plasma 6.6
-# Instala tema completo: Klassy, GTK, colores, tipografía, plasma theme, look-and-feel
+# Instala tema completo: Configuración Klassy, GTK, colores, tipografía, plasma theme, look-and-feel
 
 set -e
 
@@ -40,87 +40,17 @@ cp "$SCRIPT_DIR/Inter-Italic-VariableFont_opsz,wght.ttf" ~/.local/share/fonts/
 fc-cache -f ~/.local/share/fonts
 echo "   ✔ Fuente Inter instalada"
 
-# ── 2. Klassy — librería compartida ──────────────────────────────────────────
-echo "→ [2/8] Instalando Klassy..."
-KLASSY_DIR="$SCRIPT_DIR/klassy"
-if [ ! -d "$KLASSY_DIR/plugins" ]; then
-  echo "✗  Klassy binaries not found at $KLASSY_DIR"
-  echo "   Please run klassy/install-prebuilt.sh or klassy/install-from-source.sh first."
-  exit 1
+# ── 2. Configuración de Klassy ───────────────────────────────────────────────
+echo "→ [2/8] Aplicando configuración de Klassy (16px y botones)..."
+# Validamos y creamos la ruta correcta para Klassy
+mkdir -p ~/.config/klassy
+
+if [ -f "$SCRIPT_DIR/klassyrc" ]; then
+    cp "$SCRIPT_DIR/klassyrc" ~/.config/klassy/klassyrc
+    echo "   ✔ Configuración de Klassy aplicada en ~/.config/klassy/klassyrc"
+else
+    echo "   ⚠️ Advertencia: No se encontró el archivo klassyrc en la carpeta."
 fi
-mkdir -p ~/.local/lib64
-cp "$KLASSY_DIR/lib64/libklassycommon6.so.6" ~/.local/lib64/
-ln -sf ~/.local/lib64/libklassycommon6.so.6 ~/.local/lib64/libklassycommon6.so
-
-# Plugins
-mkdir -p ~/.local/lib64/plugins/styles
-mkdir -p ~/.local/lib64/plugins/kstyle_config
-mkdir -p ~/.local/lib64/plugins/org.kde.kdecoration3
-mkdir -p ~/.local/lib64/plugins/org.kde.kdecoration3.kcm/klassydecoration/presets
-
-cp "$KLASSY_DIR/plugins/styles/klassy6.so" \
-   ~/.local/lib64/plugins/styles/
-cp "$KLASSY_DIR/plugins/kstyle_config/klassystyleconfig.so" \
-   ~/.local/lib64/plugins/kstyle_config/
-cp "$KLASSY_DIR/plugins/org.kde.kdecoration3/org.kde.klassy.so" \
-   ~/.local/lib64/plugins/org.kde.kdecoration3/
-cp "$KLASSY_DIR/plugins/org.kde.kdecoration3.kcm/kcm_klassydecoration.so" \
-   ~/.local/lib64/plugins/org.kde.kdecoration3.kcm/
-cp "$KLASSY_DIR/plugins/org.kde.kdecoration3.kcm/klassydecoration/presets/"* \
-   ~/.local/lib64/plugins/org.kde.kdecoration3.kcm/klassydecoration/presets/
-
-# Symlinks qt6
-mkdir -p ~/.local/lib64/qt6/plugins/styles
-mkdir -p ~/.local/lib64/qt6/plugins/kstyle_config
-mkdir -p ~/.local/lib64/qt6/plugins/org.kde.kdecoration3
-mkdir -p ~/.local/lib64/qt6/plugins/org.kde.kdecoration3.kcm
-
-ln -sf ~/.local/lib64/plugins/styles/klassy6.so \
-        ~/.local/lib64/qt6/plugins/styles/klassy6.so
-ln -sf ~/.local/lib64/plugins/kstyle_config/klassystyleconfig.so \
-        ~/.local/lib64/qt6/plugins/kstyle_config/klassystyleconfig.so
-ln -sf ~/.local/lib64/plugins/org.kde.kdecoration3/org.kde.klassy.so \
-        ~/.local/lib64/qt6/plugins/org.kde.kdecoration3/org.kde.klassy.so
-ln -sf ~/.local/lib64/plugins/org.kde.kdecoration3.kcm/kcm_klassydecoration.so \
-        ~/.local/lib64/qt6/plugins/org.kde.kdecoration3.kcm/kcm_klassydecoration.so
-
-# Klassy share
-mkdir -p ~/.local/share/applications
-mkdir -p ~/.local/share/color-schemes
-mkdir -p ~/.local/share/icons/hicolor/scalable/apps
-mkdir -p ~/.local/share/kf6/kcms
-mkdir -p ~/.local/share/kstyle/themes
-mkdir -p ~/.local/share/plasma/kcms/systemsettings
-mkdir -p ~/.local/share/plasma/layout-templates
-
-cp "$KLASSY_DIR/share/applications/"*          ~/.local/share/applications/
-cp "$KLASSY_DIR/share/color-schemes/"*         ~/.local/share/color-schemes/
-cp "$KLASSY_DIR/share/icons/hicolor/scalable/apps/klassy-settings.svgz" \
-   ~/.local/share/icons/hicolor/scalable/apps/
-cp "$KLASSY_DIR/share/kf6/kcms/kcm_klassydecoration.desktop" \
-   ~/.local/share/kf6/kcms/
-cp "$KLASSY_DIR/share/kstyle/themes/klassy.themerc" \
-   ~/.local/share/kstyle/themes/
-cp "$KLASSY_DIR/share/plasma/kcms/systemsettings/kcm_klassydecoration.desktop" \
-   ~/.local/share/plasma/kcms/systemsettings/
-cp -r "$KLASSY_DIR/share/plasma/layout-templates/"* \
-      ~/.local/share/plasma/layout-templates/
-
-# Configuración de Klassy
-mkdir -p ~/.config
-cp "$SCRIPT_DIR/klassyrc" ~/.config/klassyrc
-
-echo "   ✔ Klassy instalado"
-
-echo "Configurando variables de entorno para plugins locales..."
-mkdir -p ~/.config/plasma-workspace/env/
-
-cat << 'EOF' > ~/.config/plasma-workspace/env/klassy_env.sh
-#!/bin/bash
-export QT_PLUGIN_PATH="$HOME/.local/lib64/qt6/plugins:$HOME/.local/lib/qt6/plugins:$QT_PLUGIN_PATH"
-EOF
-
-chmod +x ~/.config/plasma-workspace/env/klassy_env.sh
 
 # ── 3. Esquemas de color ──────────────────────────────────────────────────────
 echo "→ [3/8] Instalando esquemas de color..."
@@ -135,8 +65,8 @@ mkdir -p ~/.local/share/plasma/desktoptheme
 cp -r "$SCRIPT_DIR/The-Ultimate-Plasma" ~/.local/share/plasma/desktoptheme/
 echo "   ✔ Plasma Desktop Theme instalado"
 
-echo "Actualizando la caché de configuración de KDE..."
-kbuildsycoca6 --noincremental
+echo "   ↻ Actualizando la caché de configuración de KDE..."
+kbuildsycoca6 --noincremental &> /dev/null
 
 # ── 5. Look and Feel ──────────────────────────────────────────────────────────
 echo "→ [5/8] Instalando Look and Feel (oscuro y claro)..."
@@ -155,6 +85,7 @@ cp "$SCRIPT_DIR/gtk-4.0/libadwaita.css"        ~/.config/gtk-4.0/libadwaita.css
 cp "$SCRIPT_DIR/gtk-4.0/libadwaita-tweaks.css" ~/.config/gtk-4.0/libadwaita-tweaks.css
 echo "   ✔ GTK instalado"
 
+echo "   ↻ Aplicando permisos de Flatpak para temas..."
 flatpak override --user --filesystem=$HOME/.themes
 flatpak override --user --filesystem=$HOME/.local/share/icons
 flatpak override --user --filesystem=xdg-config/gtk-3.0:ro
@@ -183,7 +114,7 @@ X-KDE-AutostartEnabled=true
 EOF
 
 # Ejecutar ahora para aplicar los colores actuales
-bash ~/.local/bin/sync_konsole.sh
+bash ~/.local/bin/sync_konsole.sh &> /dev/null
 echo "   ✔ Konsole configurado (autostart registrado)"
 
 # ── 8. Layout del escritorio ──────────────────────────────────────────────────
@@ -198,10 +129,9 @@ if [ -z "$SYSTEM_WALLPAPER" ]; then
 fi
 
 sed -i "s|Image=/usr/share/wallpapers/[^']*|Image=${SYSTEM_WALLPAPER}|g"   ~/.config/plasma-org.kde.plasma.desktop-appletsrc
-
 sed -i "s|SlidePaths=/usr/share/wallpapers/|SlidePaths=${HOME}/.local/share/wallpapers/,/usr/share/wallpapers/|g"   ~/.config/plasma-org.kde.plasma.desktop-appletsrc
 
-echo "   ✔ Layout del escritorio aplicado (wallpaper: ${SYSTEM_WALLPAPER})"
+echo "   ✔ Layout del escritorio aplicado (wallpaper predeterminado configurado)"
 
 # ── Listo ─────────────────────────────────────────────────────────────────────
 echo ""
@@ -211,6 +141,9 @@ echo "╚═══════════════════════�
 echo ""
 echo "Cierra sesión y vuelve a entrar para aplicar todos los cambios."
 echo ""
+echo "Recuerda que debes tener KLASSY instalado y compilado."
+echo "(Lee la guía klassy-aurora-kinoite.md de este repositorio si usas Aurora/Kinoite)"
+echo ""
 echo "Luego selecciona tu tema en:"
 echo "  System Settings → Global Theme"
 echo "    → The Ultimate Plasma Dark"
@@ -219,9 +152,4 @@ echo ""
 echo "Y activa los componentes en:"
 echo "  Window Decorations  → Klassy"
 echo "  Application Style   → Klassy"
-echo ""
-echo "El script sync_konsole.sh se ejecutará automáticamente"
-echo "al iniciar sesión para adaptar Konsole al tema activo."
-echo "También puedes ejecutarlo manualmente en cualquier momento:"
-echo "  ~/.local/bin/sync_konsole.sh"
 echo ""
