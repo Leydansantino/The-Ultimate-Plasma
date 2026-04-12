@@ -59,6 +59,23 @@ After logging back in:
 3. **System Settings → Application Style** → select `Klassy`
  
 If you want the GNOME/MacOS type layout, you can modify it in the panel settings on the desktop.
+
+---
+
+## 🔡 Set Inter as System Font
+
+The script installs the **Inter Variable** font files, but you need to manually tell Plasma to use them. For the best "Industrial/Apple" look, follow these steps:
+
+1. Open **System Settings** → **Font Management**.
+2. Click on **Fonts** (Adjust All Fonts...).
+3. Change all main categories to **Inter Variable**:
+   - **General:** Inter Variable (Regular) - 10pt
+   - **Fixed width:** Inter Variable (Medium) - 10pt
+   - **Small:** Inter Variable (Regular) - 8pt
+   - **Toolbar/Menu/Window Title:** Inter Variable (Medium) - 10pt
+4. **Important:** Set **Font Rendering** to *Enabled* with *RGB Anti-aliasing* and *Slight Hinting* for maximum crispness.
+5. Click **Apply**.
+
 ---
  
 ## Recommended: Colloid Icon Theme
@@ -77,7 +94,6 @@ Then configure Klassy to use it:
    - **Klassy Dark icon theme inherits** → `Colloid-Dark`
 6. Click **Generate System Icons** and apply
 7. Return to icons, change any icon pack, and return again to the Klassy icon pack to load correctly
- 
  
 ---
  
@@ -100,6 +116,8 @@ If you only want Klassy without the full theme, see the [klassy/README.md](klass
 ## Uninstall
  
 ```bash
+cd
+cd The-Ultimate-Plasma
 chmod +x uninstall.sh
 ./uninstall.sh
 ```
