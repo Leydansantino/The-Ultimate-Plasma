@@ -103,11 +103,12 @@ var layout = {
                     "adaptiveTransparency": "1"
                 }
             },
-            "height": 2,
+            "height": 32,
             "hiding": "normal",
+            "lengthMode": "fill",
             "location": "top",
-            "maximumLength": 120,
-            "minimumLength": 120,
+            "maximumLength": 1920,
+            "minimumLength": 1920,
             "offset": 0
         },
         {
@@ -145,14 +146,14 @@ var layout = {
                     "wallpaperplugin": "org.kde.image"
                 },
                 "/General": {
-                    "floating": "1",
-                    "lengthMode": "2"
+                    "floating": "1"
                 }
             },
-            "height": 8,
+            "height": 64,
             "hiding": "dodgewindows",
+            "lengthMode": "fit",
             "location": "bottom",
-            "maximumLength": 120,
+            "maximumLength": 1920,
             "minimumLength": 0,
             "offset": 0
         }
