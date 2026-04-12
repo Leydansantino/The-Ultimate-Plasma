@@ -117,22 +117,6 @@ EOF
 bash ~/.local/bin/sync_konsole.sh &> /dev/null
 echo "   ✔ Konsole configurado (autostart registrado)"
 
-# ── 8. Layout del escritorio ──────────────────────────────────────────────────
-echo "→ [8/8] Aplicando configuración del escritorio..."
-cp "$SCRIPT_DIR/plasma-org.kde.plasma.desktop-appletsrc" \
-   ~/.config/plasma-org.kde.plasma.desktop-appletsrc
-
-# Adaptar rutas de wallpaper al usuario actual
-SYSTEM_WALLPAPER=$(find /usr/share/wallpapers -name "*.jpg" -o -name "*.png" 2>/dev/null | head -1)
-if [ -z "$SYSTEM_WALLPAPER" ]; then
-  SYSTEM_WALLPAPER="/usr/share/wallpapers/Next/contents/images/3840x2160.png"
-fi
-
-sed -i "s|Image=/usr/share/wallpapers/[^']*|Image=${SYSTEM_WALLPAPER}|g"   ~/.config/plasma-org.kde.plasma.desktop-appletsrc
-sed -i "s|SlidePaths=/usr/share/wallpapers/|SlidePaths=${HOME}/.local/share/wallpapers/,/usr/share/wallpapers/|g"   ~/.config/plasma-org.kde.plasma.desktop-appletsrc
-
-echo "   ✔ Layout del escritorio aplicado (wallpaper predeterminado configurado)"
-
 # ── Listo ─────────────────────────────────────────────────────────────────────
 echo ""
 echo "╔══════════════════════════════════════════╗"
