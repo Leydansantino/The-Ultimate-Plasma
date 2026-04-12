@@ -142,6 +142,11 @@ cp "$SCRIPT_DIR/gtk-4.0/libadwaita.css"        ~/.config/gtk-4.0/libadwaita.css
 cp "$SCRIPT_DIR/gtk-4.0/libadwaita-tweaks.css" ~/.config/gtk-4.0/libadwaita-tweaks.css
 echo "   ✔ GTK instalado"
 
+flatpak override --user --filesystem=$HOME/.themes
+flatpak override --user --filesystem=$HOME/.local/share/icons
+flatpak override --user --filesystem=xdg-config/gtk-3.0:ro
+flatpak override --user --filesystem=xdg-config/gtk-4.0:ro
+
 # ── 7. Konsole — esquema adaptativo ──────────────────────────────────────────
 echo "→ [7/8] Instalando esquema de Konsole y script adaptativo..."
 mkdir -p ~/.local/share/konsole
