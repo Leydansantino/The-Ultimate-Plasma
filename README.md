@@ -217,6 +217,18 @@ Neither theme alone achieved the goal. Utterly Round lacks proper light mode sup
 
 ---
 
+## 🧭 The Story Behind This Project
+
+This theme was born from a real journey. It started with a bold move: abandoning Windows 11 entirely for Linux. The road went through Fedora Workstation, Debian, CachyOS, Linux Mint, Zorin OS, Bazzite, Bluefin, and back — always chasing one thing: a visually coherent system that actually works.
+
+GNOME was never the answer. No matter how polished it looks, Qt apps refuse to follow along — and on a 14-inch 2.8K OLED Zenbook that supports HDR and color profiles, every inconsistency is visible. Plasma was the right foundation, but early attempts with themes like Sweet required rpm-ostree overrides, broke GTK apps, left browsers half-styled, and introduced lag in window animations through slow Aurorae decorations.
+
+The breakthrough came from combining three things nobody had put together before: Klassy for native, lag-free window decorations with consistent button icons across Qt and GTK; a gtk.css bridge that makes Breeze color variables the single source of truth for GTK3, GTK4/Libadwaita, and Chromium; and a hybrid Plasma theme that takes the visual language of Utterly Round and the structural correctness of MacSonoma.
+
+The result is The Ultimate Plasma — the most ambitious personal theming project ever built for KDE Plasma 6 on immutable systems.
+
+---
+
 ## Credits
 
 - [Klassy](https://github.com/paulmcauley/klassy) by Paul McAuley
