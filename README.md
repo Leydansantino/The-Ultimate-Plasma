@@ -88,7 +88,19 @@ If you switch between dark and light during a session, run it manually:
 ```bash
 ~/.local/bin/sync_konsole.sh
 ```
- 
+
+--- 
+
+## 🎨 Recommended Icons
+
+To achieve the full aesthetic shown in the screenshots, I highly recommend the **Colloid Icon Theme**. You don't need to use the terminal or external scripts for this:
+
+1. Open **System Settings** → **Icons**.
+2. Click on the **Get New Icons...** (Obtener novedades) button at the bottom.
+3. Search for **"Colloid"**.
+4. Install the **Colloid-purple** (or your favorite variant) by clicking "Install".
+5. Select it from your icon list, click **Apply**, and enjoy the total transformation!
+
 ---
  
 ## Installing Klassy standalone
