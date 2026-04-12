@@ -112,6 +112,16 @@ cp "$SCRIPT_DIR/klassyrc" ~/.config/klassyrc
 
 echo "   ✔ Klassy instalado"
 
+echo "Configurando variables de entorno para plugins locales..."
+mkdir -p ~/.config/plasma-workspace/env/
+
+cat << 'EOF' > ~/.config/plasma-workspace/env/klassy_env.sh
+#!/bin/bash
+export QT_PLUGIN_PATH="$HOME/.local/lib64/qt6/plugins:$HOME/.local/lib/qt6/plugins:$QT_PLUGIN_PATH"
+EOF
+
+chmod +x ~/.config/plasma-workspace/env/klassy_env.sh
+
 # ── 3. Esquemas de color ──────────────────────────────────────────────────────
 echo "→ [3/8] Instalando esquemas de color..."
 mkdir -p ~/.local/share/color-schemes
