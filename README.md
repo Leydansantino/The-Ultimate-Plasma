@@ -62,7 +62,28 @@ If you want the GNOME/MacOS type layout, you can modify it in the panel settings
 
 ---
 
-## 🔡 Set Inter as System Font
+## Final Polishing & Fixes
+
+### 🌐 Chromium-based Browsers (Chrome, Brave, Edge)
+To ensure your browser matches the system's aesthetic and follows the light/dark mode adaptive colors:
+
+1. Open your browser **Settings**.
+2. Navigate to **Appearance** (or Design).
+3. Look for the **"Use GTK"** (or "System theme") button and activate it.
+   * *This allows the browser to inherit the global CSS injection from the theme.*
+
+
+### 🛠️ GTK App Icon Mismatch (Buttons Fix)
+If the window control icons (Minimize, Maximize, Close) in GTK apps don't perfectly match the Plasma/Klassy style:
+
+1. Go to **System Settings** → **Window Decorations**.
+2. Select **Klassy** and click the **Edit** (pencil icon).
+3. In the settings window, navigate to the **Buttons** tab.
+4. Briefly change the **Button Icon Style** to a different one (e.g., "Klassy") and then switch it back to **"Traditional"** (or your preferred style).
+   * *This force-refreshes the icon cache for GTK applications and synchronizes the visual language across all windows.*
+
+
+### 🔡 Set Inter as System Font
 
 The script installs the **Inter Variable** font files, but you need to manually tell Plasma to use them. For the best "Industrial/Apple" look, follow these steps:
 
@@ -76,9 +97,8 @@ The script installs the **Inter Variable** font files, but you need to manually 
 4. **Important:** Set **Font Rendering** to *Enabled* with *RGB Anti-aliasing* and *Slight Hinting* for maximum crispness.
 5. Click **Apply**.
 
----
- 
-## Recommended: Colloid Icon Theme
+
+### 🎨 Recommended: Colloid Icon Theme
  
 To achieve the full aesthetic, install the **Colloid** icon theme — no terminal needed:
  
