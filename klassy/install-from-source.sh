@@ -103,14 +103,21 @@ ln -sf ~/.local/lib64/plugins/org.kde.kdecoration3.kcm/kcm_klassydecoration.so \
         ~/.local/lib64/qt6/plugins/org.kde.kdecoration3.kcm/kcm_klassydecoration.so
 
 echo ""
+echo "→ Registrando variables de entorno para Plasma..."
+mkdir -p ~/.config/environment.d
+cat > ~/.config/environment.d/klassy.conf << 'ENVEOF'
+QT_PLUGIN_PATH=${HOME}/.local/lib64/qt6/plugins:${HOME}/.local/lib64/plugins
+XDG_DATA_DIRS=${HOME}/.local/share:/usr/local/share:/usr/share
+ENVEOF
+echo "   ✔ Variables registradas en ~/.config/environment.d/klassy.conf"
+echo ""
 echo "✔  Todo listo."
 echo ""
-echo "Siguiente paso: cierra sesión y vuelve a entrar, o ejecuta:"
+echo "Siguiente paso: cierra sesión y vuelve a entrar."
+echo "Las variables de entorno se cargan al iniciar sesión —"
+echo "sin esto los paneles de configuración no aparecerán."
 echo ""
-echo "   kwin_wayland --replace &"
-echo ""
-echo "Luego aplica el tema en:"
-echo "  System Settings → Global Theme        → Kite"
-echo "  System Settings → Window Decorations  → Klassy"
-echo "  System Settings → Application Style   → Klassy"
+echo "Luego configura en System Settings:"
+echo "  Window Decorations  → Klassy"
+echo "  Application Style   → Klassy"
 echo ""
