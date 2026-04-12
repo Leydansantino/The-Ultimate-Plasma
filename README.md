@@ -30,6 +30,17 @@ chmod +x install.sh
 Log out and back in to apply all changes.
  
 ---
+
+## Permissions to read gtk.css
+
+```bash
+flatpak override --user --filesystem=$HOME/.themes
+flatpak override --user --filesystem=$HOME/.local/share/icons
+flatpak override --user --filesystem=xdg-config/gtk-3.0:ro
+flatpak override --user --filesystem=xdg-config/gtk-4.0:ro
+```
+
+---
  
 ## Applying the theme
  
