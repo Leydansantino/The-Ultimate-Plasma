@@ -3,6 +3,14 @@
 A complete theme for KDE Plasma that unifies the look of Qt, GTK3, GTK4, and Libadwaita applications under a single visual language. Uses Klassy for window decorations and application style, ensuring consistent button icons across all apps — including GNOME and Chromium-based browsers.
  
 **Compatible with Aurora 43 / Fedora Kinoite — Plasma 6.6**
+
+## 📸 Screenshots
+
+### Dark Mode
+![Dark Mode Preview](./screenshots/dark.png)
+
+### Light Mode
+![Light Mode Preview](./screenshots/light.png)
  
 ---
  
