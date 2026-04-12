@@ -58,8 +58,7 @@ After logging back in:
 2. **System Settings → Window Decorations** → select `Klassy`
 3. **System Settings → Application Style** → select `Klassy`
  
-To switch between dark and light, just change the Global Theme from System Settings at any time.
- 
+If you want the GNOME/MacOS type layout, you can modify it in the panel settings on the desktop.
 ---
  
 ## Recommended: Colloid Icon Theme
