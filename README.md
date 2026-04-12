@@ -2,7 +2,19 @@
  
 A complete theme for KDE Plasma that unifies the look of Qt, GTK3, GTK4, and Libadwaita applications under a single visual language. Uses Klassy for window decorations and application style, ensuring consistent button icons across all apps — including GNOME and Chromium-based browsers.
  
-**Compatible with Aurora & Bazzite 43 / Fedora Kinoite — Plasma 6.6**
+**Compatible with Aurora & Bazzite & Fedora Kinoite — Plasma 6.6**
+
+
+## 🔒 System Integrity First
+
+The Ultimate Plasma does NOT modify your system.
+
+- No changes to /usr
+- No rpm-ostree overrides
+- No global package installation
+- Fully contained in user space (/home)
+- Built with an atomic-first mindset, fully compatible with immutable systems like Fedora Kinoite.
+
 
 ## 📸 Screenshots
 
