@@ -42,8 +42,14 @@ echo "   ✔ Fuente Inter instalada"
 
 # ── 2. Klassy — librería compartida ──────────────────────────────────────────
 echo "→ [2/8] Instalando Klassy..."
+KLASSY_DIR="$SCRIPT_DIR/klassy"
+if [ ! -d "$KLASSY_DIR/plugins" ]; then
+  echo "✗  Klassy binaries not found at $KLASSY_DIR"
+  echo "   Please run klassy/install-prebuilt.sh or klassy/install-from-source.sh first."
+  exit 1
+fi
 mkdir -p ~/.local/lib64
-cp "$SCRIPT_DIR/klassy/lib64/libklassycommon6.so.6" ~/.local/lib64/
+cp "$KLASSY_DIR/lib64/libklassycommon6.so.6" ~/.local/lib64/
 ln -sf ~/.local/lib64/libklassycommon6.so.6 ~/.local/lib64/libklassycommon6.so
 
 # Plugins
@@ -52,15 +58,15 @@ mkdir -p ~/.local/lib64/plugins/kstyle_config
 mkdir -p ~/.local/lib64/plugins/org.kde.kdecoration3
 mkdir -p ~/.local/lib64/plugins/org.kde.kdecoration3.kcm/klassydecoration/presets
 
-cp "$SCRIPT_DIR/klassy/plugins/styles/klassy6.so" \
+cp "$KLASSY_DIR/plugins/styles/klassy6.so" \
    ~/.local/lib64/plugins/styles/
-cp "$SCRIPT_DIR/klassy/plugins/kstyle_config/klassystyleconfig.so" \
+cp "$KLASSY_DIR/plugins/kstyle_config/klassystyleconfig.so" \
    ~/.local/lib64/plugins/kstyle_config/
-cp "$SCRIPT_DIR/klassy/plugins/org.kde.kdecoration3/org.kde.klassy.so" \
+cp "$KLASSY_DIR/plugins/org.kde.kdecoration3/org.kde.klassy.so" \
    ~/.local/lib64/plugins/org.kde.kdecoration3/
-cp "$SCRIPT_DIR/klassy/plugins/org.kde.kdecoration3.kcm/kcm_klassydecoration.so" \
+cp "$KLASSY_DIR/plugins/org.kde.kdecoration3.kcm/kcm_klassydecoration.so" \
    ~/.local/lib64/plugins/org.kde.kdecoration3.kcm/
-cp "$SCRIPT_DIR/klassy/plugins/org.kde.kdecoration3.kcm/klassydecoration/presets/"* \
+cp "$KLASSY_DIR/plugins/org.kde.kdecoration3.kcm/klassydecoration/presets/"* \
    ~/.local/lib64/plugins/org.kde.kdecoration3.kcm/klassydecoration/presets/
 
 # Symlinks qt6
@@ -87,17 +93,17 @@ mkdir -p ~/.local/share/kstyle/themes
 mkdir -p ~/.local/share/plasma/kcms/systemsettings
 mkdir -p ~/.local/share/plasma/layout-templates
 
-cp "$SCRIPT_DIR/klassy/share/applications/"*          ~/.local/share/applications/
-cp "$SCRIPT_DIR/klassy/share/color-schemes/"*         ~/.local/share/color-schemes/
-cp "$SCRIPT_DIR/klassy/share/icons/hicolor/scalable/apps/klassy-settings.svgz" \
+cp "$KLASSY_DIR/share/applications/"*          ~/.local/share/applications/
+cp "$KLASSY_DIR/share/color-schemes/"*         ~/.local/share/color-schemes/
+cp "$KLASSY_DIR/share/icons/hicolor/scalable/apps/klassy-settings.svgz" \
    ~/.local/share/icons/hicolor/scalable/apps/
-cp "$SCRIPT_DIR/klassy/share/kf6/kcms/kcm_klassydecoration.desktop" \
+cp "$KLASSY_DIR/share/kf6/kcms/kcm_klassydecoration.desktop" \
    ~/.local/share/kf6/kcms/
-cp "$SCRIPT_DIR/klassy/share/kstyle/themes/klassy.themerc" \
+cp "$KLASSY_DIR/share/kstyle/themes/klassy.themerc" \
    ~/.local/share/kstyle/themes/
-cp "$SCRIPT_DIR/klassy/share/plasma/kcms/systemsettings/kcm_klassydecoration.desktop" \
+cp "$KLASSY_DIR/share/plasma/kcms/systemsettings/kcm_klassydecoration.desktop" \
    ~/.local/share/plasma/kcms/systemsettings/
-cp -r "$SCRIPT_DIR/klassy/share/plasma/layout-templates/"* \
+cp -r "$KLASSY_DIR/share/plasma/layout-templates/"* \
       ~/.local/share/plasma/layout-templates/
 
 # Configuración de Klassy
@@ -169,17 +175,15 @@ cp "$SCRIPT_DIR/plasma-org.kde.plasma.desktop-appletsrc" \
 
 # Adaptar rutas de wallpaper al usuario actual
 SYSTEM_WALLPAPER=$(find /usr/share/wallpapers -name "*.jpg" -o -name "*.png" 2>/dev/null | head -1)
-[[ -z "$SYSTEM_WALLPAPER" ]] && SYSTEM_WALLPAPER="/usr/share/wallpapers/Next/contents/images/3840x2160.png"
+if [ -z "$SYSTEM_WALLPAPER" ]; then
+  SYSTEM_WALLPAPER="/usr/share/wallpapers/Next/contents/images/3840x2160.png"
+fi
 
-sed -i \
-  "s|Image=/usr/share/wallpapers/[^"]*|Image=$SYSTEM_WALLPAPER|g" \
-  ~/.config/plasma-org.kde.plasma.desktop-appletsrc
+sed -i "s|Image=/usr/share/wallpapers/[^']*|Image=${SYSTEM_WALLPAPER}|g"   ~/.config/plasma-org.kde.plasma.desktop-appletsrc
 
-sed -i \
-  "s|SlidePaths=/usr/share/wallpapers/|SlidePaths=$HOME/.local/share/wallpapers/,/usr/share/wallpapers/|g" \
-  ~/.config/plasma-org.kde.plasma.desktop-appletsrc
+sed -i "s|SlidePaths=/usr/share/wallpapers/|SlidePaths=${HOME}/.local/share/wallpapers/,/usr/share/wallpapers/|g"   ~/.config/plasma-org.kde.plasma.desktop-appletsrc
 
-echo "   ✔ Layout del escritorio aplicado (wallpaper: $SYSTEM_WALLPAPER)"
+echo "   ✔ Layout del escritorio aplicado (wallpaper: ${SYSTEM_WALLPAPER})"
 
 # ── Listo ─────────────────────────────────────────────────────────────────────
 echo ""
