@@ -135,6 +135,9 @@ mkdir -p ~/.local/share/plasma/desktoptheme
 cp -r "$SCRIPT_DIR/The-Ultimate-Plasma" ~/.local/share/plasma/desktoptheme/
 echo "   ✔ Plasma Desktop Theme instalado"
 
+echo "Actualizando la caché de configuración de KDE..."
+kbuildsycoca6 --noincremental
+
 # ── 5. Look and Feel ──────────────────────────────────────────────────────────
 echo "→ [5/8] Instalando Look and Feel (oscuro y claro)..."
 mkdir -p ~/.local/share/plasma/look-and-feel
