@@ -2,7 +2,7 @@
     "KPlugin": {
         "Authors": [
             {
-                "Email": "leydan.sacampy@example.com",
+                "Email": "",
                 "Name": "Leydan Sacampy"
             }
         ],
@@ -10,7 +10,7 @@
         "Description": "The Ultimate Plasma: An adaptive theme for all apps qt6 and gtk with native performance.",
         "Description[es]": "The Ultimate Plasma: Un tema adaptativo para todas las aplicaciones qt6 y gtk con rendimiento nativo.",
         "EnabledByDefault": true,
-        "Id": "Utterly-Sonoma",
+        "Id": "The-Ultimate-Plasma",
         "License": "GPL-3.0",
         "Name": "The Ultimate Plasma",
         "Name[es]": "The Ultimate Plasma",
