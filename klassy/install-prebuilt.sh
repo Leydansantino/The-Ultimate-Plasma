@@ -107,6 +107,23 @@ cp "$SCRIPT_DIR/share/plasma/kcms/systemsettings/kcm_klassydecoration.desktop" \
 cp -r "$SCRIPT_DIR/share/plasma/layout-templates/"* \
       ~/.local/share/plasma/layout-templates/
 
+echo "Configurando variables de entorno para Klassy..."
+mkdir -p ~/.config/plasma-workspace/env/
+
+cat << 'EOF' > ~/.config/plasma-workspace/env/klassy_env.sh
+#!/bin/bash
+# Decirle a Qt dónde buscar los plugins
+export QT_PLUGIN_PATH="$HOME/.local/lib64/qt6/plugins:$HOME/.local/lib/qt6/plugins:$QT_PLUGIN_PATH"
+
+# Decirle al sistema dónde buscar la librería libklassycommon6.so
+export LD_LIBRARY_PATH="$HOME/.local/lib64:$HOME/.local/lib:$LD_LIBRARY_PATH"
+EOF
+
+chmod +x ~/.config/plasma-workspace/env/klassy_env.sh
+
+echo "Actualizando la base de datos de KDE..."
+kbuildsycoca6 --noincremental &> /dev/null
+
 echo ""
 echo "✔  Instalación completa."
 echo ""
