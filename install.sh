@@ -81,8 +81,6 @@ mkdir -p ~/.config/gtk-3.0
 mkdir -p ~/.config/gtk-4.0
 cp "$SCRIPT_DIR/gtk-3.0/gtk.css"               ~/.config/gtk-3.0/gtk.css
 cp "$SCRIPT_DIR/gtk-4.0/gtk.css"               ~/.config/gtk-4.0/gtk.css
-cp "$SCRIPT_DIR/gtk-4.0/libadwaita.css"        ~/.config/gtk-4.0/libadwaita.css
-cp "$SCRIPT_DIR/gtk-4.0/libadwaita-tweaks.css" ~/.config/gtk-4.0/libadwaita-tweaks.css
 echo "   ✔ GTK instalado"
 
 echo "   ↻ Aplicando permisos de Flatpak para temas..."
