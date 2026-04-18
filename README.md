@@ -20,11 +20,14 @@ The Ultimate Plasma does NOT modify your system.
 
 ### Dark Mode
 ![Dark Mode Preview](./screenshots/dark.png)
+### Obsidian Blue
 ![Obsidian Blue Preview](./screenshots/TheultimateplasmaObsidianBlue.png)
 
 ### Light Mode
 ![Light Mode Preview](./screenshots/light.png)
+### Quarzo
 ![Quarzo Preview](./screenshots/TheultimateplasmaQuarzo.png)
+### Tint Color
 ![Tint Color Preview](./screenshots/TheultimateplasmaTintcolor.png)
 
 > [!NOTE]
