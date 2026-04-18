@@ -12,6 +12,7 @@
 @define-color headerbar_backdrop_color @theme_bg_color_breeze;
 @define-color view_bg_color @content_view_bg_breeze;
 @define-color view_fg_color @theme_text_color_breeze;
+@define-color card_bg_color mix(@content_view_bg_breeze, @theme_bg_color_breeze, 0.35);
 
 headerbar, .titlebar {
     background-color: transparent !important;
