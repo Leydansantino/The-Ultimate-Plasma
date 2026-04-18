@@ -44,37 +44,41 @@
 @define-color dark_3 #3d3846;
 @define-color dark_4 #241f31;
 @define-color dark_5 #000000;
-/* semantic colors sincronizados con KDE Plasma (Breeze) */
+
 @define-color accent_color @theme_selected_bg_color_breeze;
 @define-color accent_bg_color @theme_selected_bg_color_breeze;
 @define-color accent_fg_color @theme_selected_fg_color_breeze;
-
 @define-color destructive_color @error_color_breeze;
 @define-color destructive_bg_color @error_color_breeze;
-@define-color destructive_fg_color #ffffff; /* GNOME exige blanco aquí para legibilidad en botones de borrar */
-
+@define-color destructive_fg_color #ffffff;
 @define-color success_color @success_color_breeze;
 @define-color warning_color @warning_color_breeze;
 @define-color error_color @error_color_breeze;
-
 @define-color window_bg_color @theme_bg_color_breeze;
 @define-color window_fg_color @theme_fg_color_breeze;
 @define-color view_bg_color @content_view_bg_breeze;
 @define-color view_fg_color @theme_text_color_breeze;
-@define-color headerbar_bg_color @content_view_bg_breeze;
+@define-color headerbar_bg_color @theme_titlebar_background_breeze;
 @define-color headerbar_fg_color @theme_titlebar_foreground_breeze;
 @define-color headerbar_border_color @borders_breeze;
-@define-color headerbar_backdrop_color @content_view_bg_breeze;
-@define-color headerbar_shade_color rgba(0, 0, 0, 0.36);
-
-@define-color card_bg_color rgba(255, 255, 255, 0.08); /* Se mantiene con opacidad para crear "relieve" sobre el negro puro */
+@define-color headerbar_backdrop_color @theme_titlebar_background_breeze;
+@define-color headerbar_shade_color rgba(0, 0, 0, 0.12);
+@define-color card_bg_color @theme_bg_color_breeze;
 @define-color card_fg_color @theme_fg_color_breeze;
-
 @define-color dialog_bg_color @theme_bg_color_breeze;
 @define-color dialog_fg_color @theme_fg_color_breeze;
-
 @define-color popover_bg_color @theme_bg_color_breeze;
 @define-color popover_fg_color @theme_fg_color_breeze;
+@define-color entry_bg_color @content_view_bg_breeze;
+@define-color entry_fg_color @theme_text_color_breeze;
+window.chromium {
+  background-color: mix(@theme_bg_color_breeze, @content_view_bg_breeze, 0.50);
+  color: @theme_text_color_breeze;
+}
+window.chromium menu {
+  background-color: @theme_bg_color_breeze;
+  color: @theme_fg_color_breeze;
+}
 
 @define-color shade_color rgba(0,0,0,0.36);
 @define-color scrollbar_outline_color rgba(0,0,0,0.5);
