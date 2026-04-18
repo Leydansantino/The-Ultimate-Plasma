@@ -73,8 +73,6 @@ echo "   ✔ Look and Feel eliminado"
 echo "→ Eliminando configuración GTK..."
 rm -f ~/.config/gtk-3.0/gtk.css
 rm -f ~/.config/gtk-4.0/gtk.css
-rm -f ~/.config/gtk-4.0/libadwaita.css
-rm -f ~/.config/gtk-4.0/libadwaita-tweaks.css
 echo "   ✔ GTK eliminado"
 
 # ── Konsole ───────────────────────────────────────────────────────────────────
