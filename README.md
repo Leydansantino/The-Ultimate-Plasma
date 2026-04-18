@@ -20,9 +20,12 @@ The Ultimate Plasma does NOT modify your system.
 
 ### Dark Mode
 ![Dark Mode Preview](./screenshots/dark.png)
+![Obsidian Blue Preview](./screenshots/TheultimateplasmaObsidianBlue.png)
 
 ### Light Mode
 ![Light Mode Preview](./screenshots/light.png)
+![Quarzo Preview](./screenshots/TheultimateplasmaQuarzo.png)
+![Tint Color Preview](./screenshots/TheultimateplasmaTintcolor.png)
 
 > [!NOTE]
 > When a GTK4/Libadwaita window loses focus, the left sidebar may revert to a neutral grey tone instead of keeping the active color tint. This is a known Libadwaita limitation — the backdrop state is handled internally in C code and cannot be overridden via `gtk.css`. It does not affect functionality and is subtle enough to be considered acceptable behavior.
