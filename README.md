@@ -199,9 +199,7 @@ The-Ultimate-Plasma/
 ├── gtk-3.0/
 │   └── gtk.css
 └── gtk-4.0/
-    ├── gtk.css
-    ├── libadwaita.css
-    └── libadwaita-tweaks.css
+    └── gtk.css
 ```
  
 ---
