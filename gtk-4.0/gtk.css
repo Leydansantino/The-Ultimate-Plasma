@@ -14,6 +14,7 @@
 @define-color view_fg_color @theme_text_color_breeze;
 @define-color card_bg_color mix(@content_view_bg_breeze, @theme_bg_color_breeze, 0.35);
 @define-color popover_bg_color mix(@content_view_bg_breeze, @theme_bg_color_breeze, 0.35);
+@define-color dialog_bg_color mix(@content_view_bg_breeze, @theme_bg_color_breeze, 0.35);
 
 headerbar, .titlebar {
     background-color: transparent !important;
