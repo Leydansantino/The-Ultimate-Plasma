@@ -1,49 +1,50 @@
 # The Ultimate Plasma (TUP) - Browser Integration
 
-Este repositorio contiene la integración visual definitiva para navegadores basados en Mozilla (Firefox, LibreWolf y Waterfox) con el ecosistema de **The Ultimate Plasma (TUP)**.
+This repository contains the definitive visual integration for Mozilla-based browsers (Firefox, LibreWolf, and Waterfox) within the **The Ultimate Plasma (TUP)** ecosystem.
 
-Mediante la inyección de CSS avanzado (`userChrome.css`), este parche obliga a tu navegador a respetar los estándares de diseño de KDE Plasma, logrando:
-*   **Colorimetría Dinámica:** El navegador absorbe los colores de tu tema de Plasma.
-*   **Redondeo de Ventana:** Esquinas perfectas recortadas por hardware (`clip-path`).
-*   **Pestañas Flotantes:** Diseño de pestañas elevadas con sombras sutiles y separadores semánticos.
-*   **Menús Nativos:** Menús desplegables sin fondos blancos intrusivos, respetando el desenfoque y color del sistema.
+By leveraging advanced CSS injection (`userChrome.css`), this patch forces your browser to adhere to KDE Plasma design standards, achieving:
 
----
-
-## 📁 Estructura del Repositorio
-
-El repositorio está dividido en dos directorios principales según el motor de tu navegador:
-
-*   `Firefox/`: Compatible con **Mozilla Firefox** y **LibreWolf**.
-*   `Waterfox/`: Optimizado para las variables internas de **Waterfox**.
+*   **Dynamic Color Scheme:** The browser contextually absorbs your active Plasma accent and background colors.
+*   **Hardware-Level Window Rounding:** Perfect corner rounding implemented via GPU-accelerated `clip-path`.
+*   **Floating Tabs:** A modern, "elevated" tab design with subtle shadows and semantic separators.
+*   **Themed Menus:** Clean dropdown panels that respect system transparency and tinting, eliminating intrusive white backgrounds.
 
 ---
 
-## ⚙️ Requisitos Previos
+## 📁 Repository Structure
 
-Antes de instalar los archivos, debes indicarle a tu navegador que permita la carga de hojas de estilo personalizadas.
+The repository is organized into two main directories based on the specific browser engine:
 
-1. Abre tu navegador y escribe `about:config` en la barra de direcciones.
-2. Acepta la advertencia de riesgo.
-3. Busca la siguiente preferencia:
+*   `Firefox/`: Compatible with **Mozilla Firefox** and **LibreWolf**.
+*   **Waterfox/**: Optimized specifically for **Waterfox** internal variables and layout.
+
+---
+
+## ⚙️ Prerequisites
+
+Before installing the files, you must instruct your browser to allow the loading of custom stylesheets.
+
+1. Open your browser and type `about:config` in the address bar.
+2. Accept the "Proceed with Caution" warning.
+3. Search for the following preference:
    `toolkit.legacyUserProfileCustomizations.stylesheets`
-4. Haz doble clic sobre ella para cambiar su valor a **`true`**.
+4. Double-click it to set its value to **`true`**.
 
 ---
 
-## 🚀 Instrucciones de Instalación
+## 🚀 Installation Instructions
 
-### Paso 1: Encontrar tu carpeta de Perfil
-1. En tu navegador, ve a la barra de direcciones y escribe `about:support`.
-2. Busca la fila que dice **"Directorio de perfil"** (Profile Directory) y haz clic en el botón **"Abrir directorio"** (Open Directory).
-3. Una vez en esa carpeta, crea una nueva carpeta llamada **`chrome`** (todo en minúsculas) si aún no existe.
+### Step 1: Locate your Profile Folder
+1. In your browser, type `about:support` in the address bar.
+2. Look for the **"Profile Directory"** (or "Profile Folder") row and click the **"Open Directory"** (or "Open Folder") button.
+3. Once inside that folder, create a new directory named **`chrome`** (all lowercase) if it doesn't already exist.
 
-### Paso 2: Copiar los Archivos
-Entra a la carpeta `chrome` que acabas de crear y copia el contenido del directorio correspondiente a tu navegador (`Firefox/` o `Waterfox/`).
+### Step 2: Copy the Files
+Enter the `chrome` folder you just created and copy the contents of the directory corresponding to your browser (`Firefox/` or `Waterfox/`).
 
-Tu carpeta `chrome` debería verse así:
+Your `chrome` folder should look like this:
 ```text
-[Tu-Directorio-De-Perfil]/chrome/
+[Your-Profile-Directory]/chrome/
 ├── generar-colores.sh
 ├── kde-colors.css
 └── userChrome.css
