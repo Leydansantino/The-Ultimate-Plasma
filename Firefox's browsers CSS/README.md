@@ -39,8 +39,29 @@ Before installing the files, you must instruct your browser to allow the loading
 2. Look for the **"Profile Directory"** (or "Profile Folder") row and click the **"Open Directory"** (or "Open Folder") button.
 3. Once inside that folder, create a new directory named **`chrome`** (all lowercase) if it doesn't already exist.
 
-### Step 2: Copy the Files
-Enter the `chrome` folder you just created and copy the contents of the directory corresponding to your browser (`Firefox/` or `Waterfox/`).
+
+### Step 2: Generate Dynamic Colors (Crucial)
+To ensure the browser detects your current Plasma theme colors, you must execute the included script. Open a terminal inside your chrome folder and run:
+
+```
+chmod +x generar-colores.sh
+./generar-colores.sh
+```
+
+Note: This script extracts your system's color scheme and creates the master kde-colors.css file in ~/.config/TUP/ required for the theme to function.
+
+
+### Step 3: Copy Files and Create Symbolic Link
+Now, move the theme files to your browser's profile. Enter the chrome folder you created in Step 1 and perform the following:
+
+Copy the userChrome.css file from the directory corresponding to your browser (Firefox/ or Waterfox/) into your chrome folder.
+
+Link the Color Scheme: Instead of a regular copy, create a symbolic link to ensure your browser theme updates automatically whenever you change your Plasma colors:
+
+# Run this command inside your browser's 'chrome' folder
+```
+ln -s ~/.config/TUP/kde-colors.css .
+```
 
 Your `chrome` folder should look like this:
 ```text
@@ -49,15 +70,6 @@ Your `chrome` folder should look like this:
 └── userChrome.css
 ```
 
-### Step 3: Generate Dynamic Colors (Crucial)
-To ensure the browser detects your current Plasma theme colors, you must execute the included script. Open a terminal inside your chrome folder and run:
-
-```
-chmod +x generar-colores.sh
-./generar-colores.sh
-```
-
-Note: This script extracts your system's color scheme and creates/links the kde-colors.css file required for the theme to function.
 
 ### Step 4: Apply Changes
 Simply restart your browser for the changes to take effect. Welcome to the The Ultimate Plasma experience!
