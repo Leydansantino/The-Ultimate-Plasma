@@ -1,0 +1,344 @@
+/* =================================================================
+ * The Ultimate Plasma by Leydan Santino
+ *
+ * userChrome.css (Firefox + Librewolf)
+ *
+ * Color chain:
+ *   gtk.css → kde-colors.css (--kde-*) → here
+ *
+ * Credits:
+ * URL bar drawing inspired by Vince Liuice/MacTahoe technique:
+ *   · Static field: target urlbar-input-container
+ *   · Open field: #urlbar[breakout][breakout-extend]
+ *   · Results panel: floating .urlbarView with margin-top
+ * ================================================================= */
+
+@import "kde-colors.css"; /**/
+
+
+/* ── Window rounding ─────────────────────────────────────────── */
+:root:not([sizemode="maximized"]):not([sizemode="fullscreen"]),
+window:not([sizemode="maximized"]):not([sizemode="fullscreen"]),
+#main-window:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
+background: transparent !important;
+background-color: transparent !important;
+appearance: none !important;
+border-radius: 16px !important;
+clip-path: inset(0px round 16px) !important;
+}
+
+#tabbrowser-tabpanels,
+#appcontent,
+.browserStack,
+browser {
+  background: transparent !important;
+}
+
+:root:not([sizemode="maximized"]):not([sizemode="fullscreen"]),
+#main-window:not([sizemode="maximized"]):not([sizemode="fullscreen"]),
+#main-window:not([sizemode="maximized"]):not([sizemode="fullscreen"]) > box,
+#main-window:not([sizemode="maximized"]):not([sizemode="fullscreen"]) > vbox,
+#main-window:not([sizemode="maximized"]):not([sizemode="fullscreen"]) > hbox,
+#main-window:not([sizemode="maximized"]):not([sizemode="fullscreen"]) #browser {
+background-color: transparent !important;
+appearance: none !important;
+}
+
+#main-window:not([sizemode="maximized"]):not([sizemode="fullscreen"]) #appcontent,
+#main-window:not([sizemode="maximized"]):not([sizemode="fullscreen"]) #tabbrowser-tabpanels,
+#main-window:not([sizemode="maximized"]):not([sizemode="fullscreen"]) .browserStack,
+#main-window:not([sizemode="maximized"]):not([sizemode="fullscreen"]) browser {
+border-bottom-left-radius: 16px !important;
+border-bottom-right-radius: 16px !important;
+overflow: hidden !important;
+clip-path: inset(0px round 0 0 16px 16px) !important;
+}
+
+
+/* ── Firefox/Librewolf internal variables ────────────────────── */
+:root {
+  --toolbar-bgcolor:        var(--kde-toolbar-bg)    !important;
+  --toolbar-color:          var(--kde-toolbar-fg)    !important;
+  --tab-selected-bgcolor:   var(--kde-tab-active-bg) !important;
+  --tab-selected-textcolor: var(--kde-tab-active-fg) !important;
+  --lwt-accent-color:       var(--kde-tabs-bg)       !important;
+  --lwt-text-color:         var(--kde-toolbar-fg)    !important;
+}
+
+
+/* =================================================================
+ * TAB BAR
+ * ================================================================= */
+
+#TabsToolbar {
+background-color: var(--kde-tabs-bg) !important;
+color:            var(--kde-tabs-fg) !important;
+box-shadow:       none               !important;
+padding-bottom:   0                  !important;
+padding-top:      0                  !important;
+border-bottom:    1px solid var(--kde-border) !important;
+
+/* ── ACTIVE TAB ──────────────────────────────────────────────── */
+.tabbrowser-tab[selected] .tab-background {
+  background-color: var(--kde-tab-active-bg) !important;
+  /* Rounded corners on all sides so the tab appears as a floating block */
+  border-radius:    6px                      !important;
+  border:           0px solid var(--kde-border) !important;
+  margin-bottom:    0                        !important;
+  /* Small vertical margin so the tab floats within the bar */
+  margin-block:     6px                      !important;
+  position:         relative                 !important;
+  /* Soft shadow for a floating card look */
+  box-shadow:
+  0 2px 2px color-mix(in srgb, black 15%, transparent),
+  0 1px 2px color-mix(in srgb, black 10%, transparent) !important;
+}
+
+.tabbrowser-tab[selected] .tab-label {
+  color:       var(--kde-tab-active-fg) !important;
+  font-weight: 600                      !important;
+}
+
+
+/* ── INACTIVE TAB ────────────────────────────────────────────── */
+.tabbrowser-tab:not([selected]) .tab-background {
+  background-color: transparent !important;
+  box-shadow:       none        !important;
+  border-radius:    6px         !important;
+  /* Same margin to keep alignment with the active tab */
+  margin-block:     6px         !important;
+}
+
+.tabbrowser-tab:not([selected]) .tab-label {
+  color:   var(--kde-tab-inactive-fg) !important;
+  opacity: 0.75                       !important;
+}
+
+.tabbrowser-tab:not([selected]):hover .tab-background {
+  background-color: color-mix(
+    in srgb,
+    var(--kde-tab-active-bg) 25%,
+                              var(--kde-tabs-bg) 75%
+  ) !important;
+  border-radius: 6px !important;
+}
+
+.tabbrowser-tab:not([selected]):hover .tab-label {
+  opacity: 1 !important;
+}
+
+/* ── Tab separators ──────────────────────────────────────────── */
+.tabbrowser-tab:not([selected]):not(:hover)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background-color: color-mix(in srgb, var(--kde-border) 40%, transparent) !important;
+  transition: opacity 0.2s ease;
+}
+
+/* Hide separator when the adjacent tab is selected or hovered */
+.tabbrowser-tab:hover::after,
+.tabbrowser-tab[selected]::after,
+.tabbrowser-tab:not([selected]) + .tabbrowser-tab[selected]::after,
+.tabbrowser-tab[selected] + .tabbrowser-tab::after {
+  opacity: 0 !important;
+}
+
+
+/* =================================================================
+ * TOOLBAR (nav-bar)
+ * ================================================================= */
+
+#nav-bar {
+background-color: var(--kde-toolbar-bg) !important;
+color:            var(--kde-toolbar-fg) !important;
+border-top:       none                  !important;
+box-shadow:       none                  !important;
+padding-block:    0                     !important;
+padding-inline:   4px                   !important;
+min-height:       0                     !important;
+}
+
+
+/* =================================================================
+ * URL BAR — Vinceliuice technique
+ * ================================================================= */
+
+/* 1. Outer container: static position, no own borders */
+#urlbar {
+--urlbar-height:           32px !important;
+--urlbar-container-height: 32px !important;
+--urlbar-toolbar-height:   32px !important;
+--urlbar-inner-padding:    0    !important;
+border:       none !important;
+box-shadow:   none !important;
+padding:      0    !important;
+margin-block: 2px  !important;
+}
+
+/* When breakout triggers (field expands on click) */
+#urlbar[breakout] {
+position: static !important;
+}
+
+/* 2. Visible field: input-container holds all the visual styling */
+#urlbar #urlbar-input-container,
+#urlbar .urlbar-input-container {
+-moz-appearance: none         !important;
+background:      color-mix(
+  in srgb,
+  var(--kde-toolbar-bg) 55%,
+                           var(--breeze-content-bg, #fffdf1) 45%
+)                             !important;
+border:          1px solid var(--kde-border) !important;
+border-radius:   6px          !important;
+box-shadow:      inset 0 1px 2px
+color-mix(in srgb, black 7%, transparent) !important;
+color:           var(--kde-toolbar-fg) !important;
+padding:         0 4px        !important;
+height:          32px         !important;
+max-height:      32px         !important;
+transition:      border-color 150ms ease, box-shadow 150ms ease !important;
+}
+
+/* Hover */
+#urlbar #urlbar-input-container:hover,
+#urlbar .urlbar-input-container:hover {
+border-color: color-mix(
+  in srgb, var(--kde-tab-active-line) 60%, var(--kde-border) 40%
+) !important;
+}
+
+/* 3. Open state (breakout-extend) */
+#urlbar[breakout][breakout-extend] #urlbar-input-container,
+#urlbar[breakout][breakout-extend] #urlbar-input-container:hover,
+#urlbar[breakout][breakout-extend] .urlbar-input-container,
+#urlbar[breakout][breakout-extend] .urlbar-input-container:hover {
+border-color:  var(--kde-tab-active-line)   !important;
+border-radius: 6px                          !important;
+box-shadow:
+inset 0 1px 2px color-mix(in srgb, black 5%, transparent),
+0 0 0 1px color-mix(
+  in srgb, var(--kde-tab-active-line) 30%, transparent
+)                                         !important;
+background:    color-mix(
+  in srgb,
+  var(--kde-toolbar-bg) 45%,
+                         var(--breeze-content-bg, #fffdf1) 55%
+)                                           !important;
+outline:       none                         !important;
+padding:       0 4px                        !important;
+height:        32px                         !important;
+max-height:    32px                         !important;
+}
+
+/* Override the focus outline Firefox places on #urlbar-background */
+#urlbar[focused]:not([suppress-focus-border]) > #urlbar-background,
+#urlbar-background,
+.urlbar-background {
+  background:    transparent !important;
+  border:        none        !important;
+  box-shadow:    none        !important;
+  border-radius: 6px         !important;
+}
+
+/* 4. Results panel: floats as a detached popover below the field.
+ *    margin-top creates visual separation (Vinceliuice approach) */
+.urlbarView {
+  margin-top:       6px                     !important;
+  width:            100%                    !important;
+  position:         absolute                !important;
+
+  background-color: var(--kde-toolbar-bg)  !important;
+  color:            var(--kde-toolbar-fg)  !important;
+  border:           1px solid var(--kde-border) !important;
+  border-radius:    8px                    !important;
+  box-shadow:
+  0 4px 12px color-mix(in srgb, black 15%, transparent),
+  0 1px 3px  color-mix(in srgb, black 10%, transparent) !important;
+  overflow:         hidden                 !important;
+}
+
+/* Panel body: lateral padding so icons have room to breathe */
+.urlbarView-body-outer {
+  padding:    0 6px  !important;
+  max-height: 40vh   !important;
+}
+
+.urlbarView-body-inner {
+  border: none !important;
+}
+
+/* Result rows */
+.urlbarView-row {
+  border:        none             !important;
+  border-radius: 6px              !important;
+  margin-inline: 0                !important;
+}
+
+.urlbarView-row-inner {
+  padding-block:  5px !important;
+  padding-inline: 8px !important;
+  border-radius:  6px !important;
+  align-items:    center !important;
+}
+
+/* Hovered and selected rows */
+.urlbarView-row[row-selectable]:not([selected]):hover {
+  background-color: color-mix(
+    in srgb, var(--kde-tab-active-bg) 18%, var(--kde-toolbar-bg) 82%
+  ) !important;
+}
+
+.urlbarView-row[selected] {
+  background-color: color-mix(
+    in srgb, var(--kde-tab-active-bg) 30%, var(--kde-toolbar-bg) 70%
+  ) !important;
+}
+
+/* Search engine buttons at the bottom of the panel */
+.search-one-offs {
+  padding:       8px  !important;
+  margin:        0    !important;
+  background:    var(--kde-toolbar-bg) !important;
+  border-top:    1px solid var(--kde-border) !important;
+  border-radius: 0 0 8px 8px !important;
+}
+
+/* =================================================================
+ * MENU BAR (Alt key — File, Edit, View…)
+ * ================================================================= */
+
+#toolbar-menubar {
+background-color: var(--kde-toolbar-bg) !important;
+color:            var(--kde-toolbar-fg) !important;
+border-bottom:    1px solid var(--kde-border) !important;
+box-shadow:       none !important;
+}
+
+/* Menu bar items */
+.menubar-item {
+  border-radius: 4px     !important;
+  padding-block: 2px     !important;
+  padding-inline: 6px    !important;
+  color: var(--kde-toolbar-fg) !important;
+}
+
+.menubar-item:hover,
+.menubar-item[_moz-menuactive="true"] {
+  background-color: color-mix(
+    in srgb, var(--kde-tab-active-bg) 20%, var(--kde-toolbar-bg) 80%
+  ) !important;
+  color: var(--kde-toolbar-fg) !important;
+}
+
+.menubar-item[open="true"] {
+  background-color: color-mix(
+    in srgb, var(--kde-tab-active-bg) 30%, var(--kde-toolbar-bg) 70%
+  ) !important;
+  color: var(--kde-toolbar-fg) !important;
+}
