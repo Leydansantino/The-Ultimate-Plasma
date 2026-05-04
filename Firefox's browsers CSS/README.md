@@ -58,7 +58,7 @@ Copy the userChrome.css file from the directory corresponding to your browser (F
 
 Link the Color Scheme: Instead of a regular copy, create a symbolic link to ensure your browser theme updates automatically whenever you change your Plasma colors:
 
-# Run this command inside your browser's 'chrome' folder
+### Run this command inside your browser's 'chrome' folder
 ```
 ln -s ~/.config/TUP/kde-colors.css .
 ```
