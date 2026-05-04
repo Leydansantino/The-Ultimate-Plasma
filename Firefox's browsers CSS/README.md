@@ -45,6 +45,26 @@ Enter the `chrome` folder you just created and copy the contents of the director
 Your `chrome` folder should look like this:
 ```text
 [Your-Profile-Directory]/chrome/
-├── generar-colores.sh
 ├── kde-colors.css
 └── userChrome.css
+```
+
+### Step 3: Generate Dynamic Colors (Crucial)
+To ensure the browser detects your current Plasma theme colors, you must execute the included script. Open a terminal inside your chrome folder and run:
+
+```
+chmod +x generar-colores.sh
+./generar-colores.sh
+```
+
+Note: This script extracts your system's color scheme and creates/links the kde-colors.css file required for the theme to function.
+
+### Step 4: Apply Changes
+Simply restart your browser for the changes to take effect. Welcome to the The Ultimate Plasma experience!
+
+🛠️ Troubleshooting & Notes
+Title Bar: This theme is optimized to work without the native Title Bar enabled. Ensure the Title Bar is disabled in your browser's customization settings (Right-click the toolbar -> Customize Toolbar -> Uncheck "Title Bar").
+
+OLED Optimization: The shadows and rounding are specifically tuned for high-density displays (HiDPI/2K/4K).
+
+Updates: If a major browser update breaks a specific UI element, simply perform a git pull from this repository and replace your userChrome.css with the updated version.
