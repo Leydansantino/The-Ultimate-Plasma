@@ -99,7 +99,7 @@ clip-path: inset(0px round 0 0 16px 16px) !important;
  * ================================================================= */
 
 #TabsToolbar {
-background-color: var(--kde-tabs-bg) !important;
+background-color: var(--kde-toolbar-bg) !important;
 color:            var(--kde-tabs-fg) !important;
 box-shadow:       none               !important;
 padding-bottom:   0                  !important;
@@ -111,7 +111,7 @@ border-bottom:    0px solid var(--kde-border) !important;
 .tabbrowser-tab[selected] .tab-background {
   background-color: var(--kde-tab-active-bg) !important;
   border-radius:    6px !important;
-  border:           0px solid var(--kde-border) !important;
+  border:           1px solid var(--kde-border) !important;
   margin-block:     6px !important;
   position:         relative !important;
   box-shadow:
@@ -128,10 +128,11 @@ border-bottom:    0px solid var(--kde-border) !important;
 .tabbrowser-tab:not([selected]) .tab-background {
   background-color: color-mix(
     in srgb,
-    var(--kde-tabs-bg) 88%,
-                              var(--kde-tab-active-bg) 12%
+    var(--kde-tab-inactive-bg) 50%
+
   ) !important;
   border-radius: 6px !important;
+  border:           1px solid var(--kde-border) !important;
   margin-block:  6px !important;
   box-shadow:
   0 1px 2px color-mix(in srgb, black 8%, transparent),
@@ -146,8 +147,8 @@ border-bottom:    0px solid var(--kde-border) !important;
 .tabbrowser-tab:not([selected]):hover .tab-background {
   background-color: color-mix(
     in srgb,
-    var(--kde-tabs-bg) 70%,
-                              var(--kde-tab-active-bg) 30%
+    var(--kde-tabs-bg) 55%,
+                              var(--kde-tab-inactive-bg) 45%
   ) !important;
   box-shadow:
   0 2px 4px color-mix(in srgb, black 12%, transparent),
@@ -158,7 +159,7 @@ border-bottom:    0px solid var(--kde-border) !important;
   opacity: 0.9 !important;
 }
 
-/* ── Tab separators ──────────────────────────────────────────── */
+/* ── Tab separators ────────────────────────────────────────────
 .tabbrowser-tab:not([selected]):not(:hover)::after {
   content: "";
   display: block;
@@ -169,7 +170,7 @@ border-bottom:    0px solid var(--kde-border) !important;
   width: 1px;
   background-color: color-mix(in srgb, var(--kde-border) 40%, transparent) !important;
   transition: opacity 0.2s ease;
-}
+}*/
 
 .tabbrowser-tab:hover::after,
 .tabbrowser-tab[selected]::after,
@@ -184,7 +185,9 @@ border-bottom:    0px solid var(--kde-border) !important;
  * ================================================================= */
 
 #nav-bar {
-background-color: var(--kde-toolbar-bg) !important;
+background-color: color-mix(
+  in srgb, var(--breeze-theme-header-background)
+) !important;
 color:            var(--kde-toolbar-fg) !important;
 border-top:       none !important;
 box-shadow:       none !important;
@@ -193,6 +196,16 @@ padding-inline:   4px !important;
 min-height:       0 !important;
 }
 
+
+/* ── Bookmarks bar: mismo tono que nav-bar ───────────────────── */
+#PersonalToolbar {
+background-color: color-mix(
+  in srgb, var(--breeze-theme-header-background)
+) !important;
+color:            var(--kde-toolbar-fg) !important;
+border-top:       none !important;
+box-shadow:       none !important;
+}
 
 /* =================================================================
  * URL BAR — Vinceliuice technique
@@ -225,15 +238,16 @@ z-index:    5    !important;
 #urlbar .urlbar-input-container {
 -moz-appearance: none !important;
 background: color-mix(
-  in srgb,
-  var(--kde-toolbar-bg) 55%,
-                      var(--breeze-content-bg, #fffdf1) 45%
+  in srgb, var(--kde-url-bg)
 ) !important;
-border:        1px solid var(--kde-border) !important;
+border:        1px solid color-mix(
+  in srgb, var(--kde-border) 80%, var(--kde-tab-active-bg) 20%
+) !important;
 border-radius: 6px !important;
+/* Sombra exterior flotante — igual que las pestañas */
 box-shadow:
-inset 0 1px 3px color-mix(in srgb, black 10%, transparent),
-inset 0 2px 4px color-mix(in srgb, black 6%, transparent) !important;
+0 2px 4px color-mix(in srgb, black 15%, transparent),
+0 1px 2px color-mix(in srgb, black 10%, transparent) !important;
 color:         var(--kde-toolbar-fg) !important;
 padding:       0 4px !important;
 height:        32px !important;
@@ -254,14 +268,13 @@ border-color: color-mix(
 #urlbar[breakout][breakout-extend] .urlbar-input-container:hover {
 border-color:  var(--kde-tab-active-line) !important;
 border-radius: 6px !important;
+/* Foco: sombra flotante más pronunciada + halo de acento */
 box-shadow:
-inset 0 1px 3px color-mix(in srgb, black 10%, transparent),
-inset 0 2px 4px color-mix(in srgb, black 6%, transparent),
-0 0 0 1px color-mix(in srgb, var(--kde-tab-active-line) 30%, transparent) !important;
+0 3px 8px color-mix(in srgb, black 18%, transparent),
+0 1px 3px color-mix(in srgb, black 12%, transparent),
+0 0 0 1px color-mix(in srgb, var(--kde-tab-active-line) 40%, transparent) !important;
 background: color-mix(
-  in srgb,
-  var(--kde-toolbar-bg) 45%,
-                      var(--breeze-content-bg, #fffdf1) 55%
+  in srgb, var(--kde-tabs-bg) 80%, var(--kde-tab-active-bg) 20%
 ) !important;
 outline:    none !important;
 padding:    0 4px !important;
@@ -294,7 +307,7 @@ max-height: 32px !important;
   right:            0   !important;
   width:            auto !important;
   position:         absolute !important;
-  background-color: var(--kde-toolbar-bg) !important;
+  background-color: var(--kde-url-bg) !important;
   color:            var(--kde-toolbar-fg) !important;
   border:           1px solid var(--kde-border) !important;
   border-radius:    8px !important;
