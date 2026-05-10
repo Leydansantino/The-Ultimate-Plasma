@@ -1,13 +1,16 @@
 /* =================================================================
  * The Ultimate Plasma by Leydan Santino
  *
- * userChrome.css (Waterfox)
+ * userChrome.css — WATERFOX
  *
  * Color chain:
  *   gtk.css → kde-colors.css (--kde-*) → here
  *
- * Credits:
- * URL bar drawing inspired by Vince Liuice/MacTahoe technique.
+ * Diferencias respecto a Firefox:
+ *   · Sin margin-block en pestañas (rompe el layout de Waterfox)
+ *   · Indicador de tab activa con border-top en lugar de tab flotante
+ *   · Variables internas cubren tanto las de Firefox moderno como ESR
+ *   · Urlbar: breakout se gestiona igual pero con fallbacks adicionales
  * ================================================================= */
 
 @import "kde-colors.css"; /**/
@@ -17,11 +20,11 @@
 :root:not([sizemode="maximized"]):not([sizemode="fullscreen"]),
 window:not([sizemode="maximized"]):not([sizemode="fullscreen"]),
 #main-window:not([sizemode="maximized"]):not([sizemode="fullscreen"]) {
-background: transparent !important;
+background:       transparent !important;
 background-color: transparent !important;
-appearance: none !important;
-border-radius: 16px !important;
-clip-path: inset(0px round 16px) !important;
+appearance:       none        !important;
+border-radius:    16px        !important;
+clip-path:        inset(0px round 16px) !important;
 }
 
 #tabbrowser-tabpanels,
@@ -38,22 +41,23 @@ browser {
 #main-window:not([sizemode="maximized"]):not([sizemode="fullscreen"]) > hbox,
 #main-window:not([sizemode="maximized"]):not([sizemode="fullscreen"]) #browser {
 background-color: transparent !important;
-appearance: none !important;
+appearance:       none        !important;
 }
 
 #main-window:not([sizemode="maximized"]):not([sizemode="fullscreen"]) #appcontent,
 #main-window:not([sizemode="maximized"]):not([sizemode="fullscreen"]) #tabbrowser-tabpanels,
 #main-window:not([sizemode="maximized"]):not([sizemode="fullscreen"]) .browserStack,
 #main-window:not([sizemode="maximized"]):not([sizemode="fullscreen"]) browser {
-border-bottom-left-radius: 16px !important;
-border-bottom-right-radius: 16px !important;
-overflow: hidden !important;
+border-bottom-left-radius:  16px   !important;
+border-bottom-right-radius: 16px   !important;
+overflow:                   hidden !important;
 clip-path: inset(0px round 0 0 16px 16px) !important;
 }
 
 
-/* ── Firefox/Librewolf internal variables ────────────────────── */
+/* ── Variables internas — Firefox moderno + ESR/Waterfox ─────── */
 :root {
+  /* Firefox moderno */
   --toolbar-bgcolor:        var(--kde-toolbar-bg)    !important;
   --toolbar-color:          var(--kde-toolbar-fg)    !important;
   --tab-selected-bgcolor:   var(--kde-tab-active-bg) !important;
@@ -61,7 +65,14 @@ clip-path: inset(0px round 0 0 16px 16px) !important;
   --lwt-accent-color:       var(--kde-tabs-bg)       !important;
   --lwt-text-color:         var(--kde-toolbar-fg)    !important;
 
-  /* ── Menús: arrowpanel, menupopup, panelview ─────────────── */
+  /* ESR / Waterfox legacy */
+  --toolbar-background-color: var(--kde-toolbar-bg)    !important;
+  --toolbar-field-background-color: var(--kde-url-bg)  !important;
+  --toolbar-field-color:      var(--kde-toolbar-fg)    !important;
+  --toolbar-field-border-color: var(--kde-border)      !important;
+  --tab-line-color:           var(--kde-tab-active-line) !important;
+
+  /* ── Menús ───────────────────────────────────────────────── */
   --arrowpanel-background:     var(--kde-toolbar-bg) !important;
   --arrowpanel-color:          var(--kde-toolbar-fg) !important;
   --arrowpanel-border-color:   var(--kde-border)     !important;
@@ -96,86 +107,109 @@ clip-path: inset(0px round 0 0 16px 16px) !important;
 
 /* =================================================================
  * TAB BAR
+ * Waterfox: sin margin-block en las pestañas.
+ * El padding en TabsToolbar crea el espacio visual,
+ * y border-top en tab activa hace de indicador.
  * ================================================================= */
 
 #TabsToolbar {
-background-color: var(--kde-tabs-bg) !important;
-color:            var(--kde-tabs-fg) !important;
-box-shadow:       none               !important;
-padding-bottom:   0                  !important;
-padding-top:      0                  !important;
-border-bottom:    0px solid var(--kde-border) !important;
+background-color: var(--kde-toolbar-bg) !important;
+color:            var(--kde-tabs-fg)    !important;
+box-shadow:       none                  !important;
+border-bottom:   0px solid var(--kde-border) !important;
+/* Padding vertical para que las pestañas no peguen al borde */
+padding-block:    2px !important;
+padding-inline:   4px !important;
 }
 
-/* ── ACTIVE TAB ──────────────────────────────────────────────── */
-.tabbrowser-tab[selected] .tab-background {
+/* ── Pestaña ACTIVA ───────────────────────────────────────────── */
+/* Waterfox: atacar múltiples capas para forzar el color de tab activa */
+.tabbrowser-tab[selected],
+.tabbrowser-tab[visuallyselected] {
+  --tab-selected-bgcolor:   var(--kde-tab-active-bg) !important;
+  --tab-selected-textcolor: var(--kde-tab-active-fg) !important;
+}
+
+.tabbrowser-tab[selected] .tab-background,
+.tabbrowser-tab[visuallyselected] .tab-background,
+.tabbrowser-tab[selected] .tab-stack,
+.tabbrowser-tab[visuallyselected] .tab-stack {
   background-color: var(--kde-tab-active-bg) !important;
-  border-radius:    6px !important;
-  border:           0px solid var(--kde-border) !important;
-  margin-block:     0px !important;
-  position:         relative !important;
-  box-shadow:
-  0 2px 4px color-mix(in srgb, black 15%, transparent),
-  0 1px 2px color-mix(in srgb, black 10%, transparent) !important;
+  border:           none                     !important;
+  box-shadow:       none                     !important;
 }
 
-.tabbrowser-tab[selected] .tab-label {
+.tabbrowser-tab[selected] .tab-content,
+.tabbrowser-tab[visuallyselected] .tab-content {
+  background-color: var(--kde-tab-active-bg) !important;
+}
+
+.tabbrowser-tab[selected] .tab-label,
+.tabbrowser-tab[visuallyselected] .tab-label {
   color:       var(--kde-tab-active-fg) !important;
-  font-weight: 600 !important;
+  font-weight: 600                      !important;
 }
 
-/* ── INACTIVE TAB ────────────────────────────────────────────── */
+.tabbrowser-tab[selected] .tab-background::before,
+.tabbrowser-tab[visuallyselected] .tab-background::before {
+  content:          "" !important;
+  display:          block !important;
+  position:         absolute !important;
+  top:              0 !important;
+  left:             0 !important;
+  right:            0 !important;
+  height:           2px !important;
+  background-color: var(--kde-accent-hover) !important;
+  border-radius:    4px 4px 0 0 !important;
+}
+
+/* ── PESTAÑA INACTIVA ────────────────────────────────────────── */
 .tabbrowser-tab:not([selected]) .tab-background {
-  background-color: color-mix(
-    in srgb,
-    var(--kde-tabs-bg) 88%,
-                              var(--kde-tab-active-bg) 12%
-  ) !important;
-  border-radius: 6px !important;
-  margin-block:  0px !important;
-  box-shadow:
-  0 1px 2px color-mix(in srgb, black 8%, transparent),
-  0 1px 1px color-mix(in srgb, black 5%, transparent) !important;
+  background-color: var(--kde-tab-inactive-bg) !important;
 }
 
 .tabbrowser-tab:not([selected]) .tab-label {
   color:   var(--kde-tab-inactive-fg) !important;
-  opacity: 0.65 !important;
+  opacity: 0.65                       !important;
 }
 
+/* Hover pestaña inactiva */
 .tabbrowser-tab:not([selected]):hover .tab-background {
   background-color: color-mix(
     in srgb,
-    var(--kde-tabs-bg) 70%,
-                              var(--kde-tab-active-bg) 30%
+    var(--kde-tab-inactive-bg) 70%,
+                              var(--kde-tab-active-bg)   30%
   ) !important;
-  box-shadow:
-  0 2px 4px color-mix(in srgb, black 12%, transparent),
-  0 1px 2px color-mix(in srgb, black 8%, transparent) !important;
+  border-color: color-mix(
+    in srgb, var(--kde-border) 60%, transparent
+  ) !important;
 }
 
 .tabbrowser-tab:not([selected]):hover .tab-label {
   opacity: 0.9 !important;
 }
 
-/* ── Tab separators ──────────────────────────────────────────── */
-.tabbrowser-tab:not([selected]):not(:hover)::after {
-  content: "";
-  display: block;
-  position: absolute;
-  right: 0;
-  top: 20%;
-  height: 60%;
-  width: 1px;
-  background-color: color-mix(in srgb, var(--kde-border) 40%, transparent) !important;
-  transition: opacity 0.2s ease;
+/* Ocultar separadores nativos de Waterfox entre pestañas */
+.tabbrowser-tab::before,
+.tabbrowser-tab::after {
+  border-color: transparent !important;
+  opacity: 0    !important;
 }
 
-.tabbrowser-tab:hover::after,
-.tabbrowser-tab[selected]::after,
-.tabbrowser-tab:not([selected]) + .tabbrowser-tab[selected]::after,
-.tabbrowser-tab[selected] + .tabbrowser-tab::after {
-  opacity: 0 !important;
+/* Botones nueva pestaña y overflow */
+#tabs-newtab-button,
+#alltabs-button,
+#TabsToolbar .toolbarbutton-1 {
+color:         var(--kde-tabs-fg) !important;
+border-radius: 6px                !important;
+}
+
+#tabs-newtab-button:hover,
+#alltabs-button:hover,
+#TabsToolbar .toolbarbutton-1:hover {
+background-color: color-mix(
+  in srgb, var(--kde-tab-active-bg) 30%, transparent
+) !important;
 }
 
 
@@ -184,7 +218,9 @@ border-bottom:    0px solid var(--kde-border) !important;
  * ================================================================= */
 
 #nav-bar {
-background-color: var(--kde-toolbar-bg) !important;
+background-color: color-mix(
+  in srgb, var(--breeze-theme-header-background)
+) !important;
 color:            var(--kde-toolbar-fg) !important;
 border-top:       none !important;
 box-shadow:       none !important;
@@ -194,19 +230,30 @@ min-height:       0 !important;
 }
 
 
+/* ── Bookmarks bar ───────────────────────────────────────────── */
+#PersonalToolbar {
+background-color: color-mix(
+  in srgb, var(--breeze-theme-header-background)
+) !important;
+color:      var(--kde-toolbar-fg) !important;
+border-top: none                  !important;
+box-shadow: none                  !important;
+}
+
+
 /* =================================================================
- * URL BAR — Vinceliuice technique
+ * URL BAR — técnica Vinceliuice adaptada para Waterfox
  * ================================================================= */
 
 #urlbar {
 --urlbar-height:           32px !important;
 --urlbar-container-height: 32px !important;
 --urlbar-toolbar-height:   32px !important;
---urlbar-inner-padding:    0 !important;
+--urlbar-inner-padding:    0    !important;
 border:       none !important;
 box-shadow:   none !important;
-padding:      0 !important;
-margin-block: 2px !important;
+padding:      0    !important;
+margin-block: 2px  !important;
 }
 
 #urlbar[breakout] {
@@ -221,24 +268,23 @@ max-height: 32px !important;
 z-index:    5    !important;
 }
 
+/* Campo visible */
 #urlbar #urlbar-input-container,
 #urlbar .urlbar-input-container {
--moz-appearance: none !important;
-background: color-mix(
-  in srgb,
-  var(--kde-toolbar-bg) 55%,
-                      var(--breeze-content-bg, #fffdf1) 45%
-) !important;
-border:        1px solid var(--kde-border) !important;
-border-radius: 6px !important;
+-moz-appearance: none   !important;
+background:  var(--kde-url-bg) !important;
+border:      1px solid color-mix(
+  in srgb, var(--kde-border) 80%, var(--kde-tab-active-bg) 20%
+)                               !important;
+border-radius: 6px              !important;
 box-shadow:
-inset 0 1px 3px color-mix(in srgb, black 10%, transparent),
-inset 0 2px 4px color-mix(in srgb, black 6%, transparent) !important;
-color:         var(--kde-toolbar-fg) !important;
-padding:       0 4px !important;
-height:        32px !important;
-max-height:    32px !important;
-transition:    border-color 150ms ease, box-shadow 150ms ease !important;
+0 2px 4px color-mix(in srgb, black 15%, transparent),
+0 1px 2px color-mix(in srgb, black 10%, transparent) !important;
+color:       var(--kde-toolbar-fg) !important;
+padding:     0 4px              !important;
+height:      32px               !important;
+max-height:  32px               !important;
+transition:  border-color 150ms ease, box-shadow 150ms ease !important;
 }
 
 #urlbar #urlbar-input-container:hover,
@@ -248,34 +294,32 @@ border-color: color-mix(
 ) !important;
 }
 
+/* Estado abierto */
 #urlbar[breakout][breakout-extend] #urlbar-input-container,
 #urlbar[breakout][breakout-extend] #urlbar-input-container:hover,
 #urlbar[breakout][breakout-extend] .urlbar-input-container,
 #urlbar[breakout][breakout-extend] .urlbar-input-container:hover {
 border-color:  var(--kde-tab-active-line) !important;
-border-radius: 6px !important;
+border-radius: 6px                        !important;
 box-shadow:
-inset 0 1px 3px color-mix(in srgb, black 10%, transparent),
-inset 0 2px 4px color-mix(in srgb, black 6%, transparent),
-0 0 0 1px color-mix(in srgb, var(--kde-tab-active-line) 30%, transparent) !important;
-background: color-mix(
-  in srgb,
-  var(--kde-toolbar-bg) 45%,
-                      var(--breeze-content-bg, #fffdf1) 55%
-) !important;
-outline:    none !important;
-padding:    0 4px !important;
-height:     32px !important;
-max-height: 32px !important;
+0 3px 8px color-mix(in srgb, black 18%, transparent),
+0 1px 3px color-mix(in srgb, black 12%, transparent),
+0 0 0 1px color-mix(in srgb, var(--kde-tab-active-line) 40%, transparent) !important;
+background:  var(--kde-url-bg) !important;
+outline:     none              !important;
+padding:     0 4px             !important;
+height:      32px              !important;
+max-height:  32px              !important;
 }
 
+/* Neutralizar #urlbar-background */
 #urlbar[focused]:not([suppress-focus-border]) > #urlbar-background,
 #urlbar-background,
 .urlbar-background {
   background:    transparent !important;
-  border:        none !important;
-  box-shadow:    none !important;
-  border-radius: 6px !important;
+  border:        none        !important;
+  box-shadow:    none        !important;
+  border-radius: 6px         !important;
 }
 
 #urlbar-input,
@@ -285,16 +329,16 @@ max-height: 32px !important;
 
 
 /* =================================================================
- * URL BAR RESULTS PANEL
+ * PANEL DE RESULTADOS
  * ================================================================= */
 
 .urlbarView {
-  margin-top:       6px !important;
-  left:             0   !important;
-  right:            0   !important;
+  margin-top:       6px  !important;
+  left:             0    !important;
+  right:            0    !important;
   width:            auto !important;
   position:         absolute !important;
-  background-color: var(--kde-toolbar-bg) !important;
+  background-color: var(--kde-url-bg)   !important;
   color:            var(--kde-toolbar-fg) !important;
   border:           1px solid var(--kde-border) !important;
   border-radius:    8px !important;
@@ -306,7 +350,7 @@ max-height: 32px !important;
 
 .urlbarView-body-outer {
   padding:    0 6px !important;
-  max-height: 40vh !important;
+  max-height: 40vh  !important;
 }
 
 .urlbarView-body-inner {
@@ -315,14 +359,14 @@ max-height: 32px !important;
 
 .urlbarView-row {
   border:        none !important;
-  border-radius: 6px !important;
-  margin-inline: 0 !important;
+  border-radius: 6px  !important;
+  margin-inline: 0    !important;
 }
 
 .urlbarView-row-inner {
-  padding-block:  5px !important;
-  padding-inline: 8px !important;
-  border-radius:  6px !important;
+  padding-block:  5px   !important;
+  padding-inline: 8px   !important;
+  border-radius:  6px   !important;
   align-items:    center !important;
 }
 
@@ -341,13 +385,13 @@ max-height: 32px !important;
 
 .urlbarView-row[row-selectable]:not([selected]):hover {
   background-color: color-mix(
-    in srgb, var(--kde-tab-active-bg) 18%, var(--kde-toolbar-bg) 82%
+    in srgb, var(--kde-tab-active-bg) 18%, var(--kde-url-bg) 82%
   ) !important;
 }
 
 .urlbarView-row[selected] {
   background-color: color-mix(
-    in srgb, var(--kde-tab-active-bg) 30%, var(--kde-toolbar-bg) 70%
+    in srgb, var(--kde-tab-active-bg) 30%, var(--kde-url-bg) 70%
   ) !important;
 }
 
@@ -365,8 +409,8 @@ max-height: 32px !important;
 
 .search-one-offs {
   padding:       8px !important;
-  margin:        0 !important;
-  background:    var(--kde-toolbar-bg) !important;
+  margin:        0   !important;
+  background:    var(--kde-url-bg) !important;
   border-top:    1px solid var(--kde-border) !important;
   border-radius: 0 0 8px 8px !important;
 }
@@ -375,30 +419,30 @@ max-height: 32px !important;
   border-radius: 6px !important;
   border:        1px solid var(--kde-border) !important;
   background:    color-mix(
-    in srgb, var(--kde-toolbar-bg) 80%, var(--kde-tab-active-bg) 20%
+    in srgb, var(--kde-url-bg) 80%, var(--kde-tab-active-bg) 20%
   ) !important;
-  color:         var(--kde-toolbar-fg) !important;
-  min-height:    28px !important;
-  min-width:     28px !important;
-  margin:        2px !important;
+  color:      var(--kde-toolbar-fg) !important;
+  min-height: 28px !important;
+  min-width:  28px !important;
+  margin:     2px  !important;
 }
 
 .searchbar-engine-one-off-item:hover,
 .searchbar-engine-one-off-item[selected] {
   background: color-mix(
-    in srgb, var(--kde-tab-active-bg) 35%, var(--kde-toolbar-bg) 65%
+    in srgb, var(--kde-tab-active-bg) 35%, var(--kde-url-bg) 65%
   ) !important;
 }
 
 
 /* =================================================================
- * MENU BAR (Alt key)
+ * MENU BAR (Alt)
  * ================================================================= */
 
 #toolbar-menubar {
 background-color: var(--kde-toolbar-bg) !important;
 color:            var(--kde-toolbar-fg) !important;
-box-shadow:       none !important;
+box-shadow:       none                  !important;
 }
 
 .menubar-item {
@@ -423,15 +467,24 @@ box-shadow:       none !important;
 
 
 /* =================================================================
- * HAMBURGER PANEL (AppMenu)
+ * HAMBURGER PANEL
  * ================================================================= */
 
 #appMenu-popup,
+#appMenu-popup > *,
 #appMenu-proton-mainView,
 .appmenu-button-group,
-panelview {
+.panel-viewstack,
+panelview,
+panelview > * {
   background-color: var(--kde-toolbar-bg) !important;
   color:            var(--kde-toolbar-fg) !important;
+}
+
+#appMenu-popup .panel-arrowcontent,
+#appMenu-popup .panel-content {
+background-color: var(--kde-toolbar-bg) !important;
+padding:          0 !important;
 }
 
 .panel-header {
@@ -443,9 +496,9 @@ panelview {
 .subviewbutton,
 .subviewbutton-nav,
 toolbarbutton.subviewbutton {
-  border-radius:  6px !important;
-  padding-block:  5px !important;
-  padding-inline: 8px !important;
+  border-radius:  6px  !important;
+  padding-block:  5px  !important;
+  padding-inline: 8px  !important;
   color:          var(--kde-toolbar-fg) !important;
   background:     transparent !important;
 }
@@ -453,7 +506,7 @@ toolbarbutton.subviewbutton {
 .subviewbutton:hover,
 .subviewbutton-nav:hover {
   background-color: var(--button-hover-bgcolor) !important;
-  color:            var(--kde-toolbar-fg) !important;
+  color:            var(--kde-toolbar-fg)        !important;
 }
 
 .subviewbutton:active,
@@ -461,7 +514,6 @@ toolbarbutton.subviewbutton {
   background-color: var(--button-active-bgcolor) !important;
 }
 
-/* Separadores del panel hamburguesa */
 .panel-separator > .panel-separator-box,
 toolbarseparator {
   -moz-appearance: none !important;
@@ -471,14 +523,13 @@ toolbarseparator {
   ) !important;
   margin-block:    4px !important;
   margin-inline:   8px !important;
-  height:          0 !important;
-  min-height:      0 !important;
-  padding:         0 !important;
+  height:          0   !important;
+  min-height:      0   !important;
+  padding:         0   !important;
   background:      transparent !important;
-  opacity:         1 !important;
+  opacity:         1   !important;
 }
 
-/* Shortcuts */
 .menu-accel,
 .subviewbutton > .toolbarbutton-shortcut {
   color: color-mix(
@@ -488,10 +539,9 @@ toolbarseparator {
 
 
 /* =================================================================
- * MENÚS CONTEXTUALES XUL (clic derecho en toolbar)
+ * MENÚS CONTEXTUALES XUL
  * ================================================================= */
 
-/* Hover directo en ítems */
 menuitem[_moz-menuactive="true"],
 menu[_moz-menuactive="true"] {
   background-color: var(--menuitem-hover-background) !important;
