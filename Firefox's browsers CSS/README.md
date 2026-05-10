@@ -44,8 +44,8 @@ Before installing the files, you must instruct your browser to allow the loading
 To ensure the browser detects your current Plasma theme colors, you must execute the included script. Open a terminal inside your chrome folder and run:
 
 ```
-chmod +x generar-colores.sh
-./generar-colores.sh
+chmod +x generate-colors.sh
+./generate-colors.sh
 ```
 
 Note: This script extracts your system's color scheme and creates the master kde-colors.css file in ~/.config/TUP/ required for the theme to function.
