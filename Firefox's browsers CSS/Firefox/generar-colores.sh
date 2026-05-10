@@ -80,14 +80,16 @@ css_lines += [
     "  /* ── Roles semánticos para userChrome.css ─────────────── */",
     "  --kde-tabs-bg:           var(--breeze-theme-titlebar-background);",
     "  --kde-tabs-fg:           var(--breeze-theme-titlebar-foreground);",
-    "  --kde-tab-active-bg:     var(--breeze-theme-selected-bg-color);",
-    "  --kde-tab-active-fg:     var(--breeze-theme-selected-fg-color);",
+    "  --kde-tab-inactive-bg:     var(--breeze-theme-bg-color);",
+    "  --kde-tab-inactive-fg:     var(--breeze-theme-fg-color);",
     "  --kde-tab-active-line:   var(--breeze-theme-hovering-selected-bg-color);",
-    "  --kde-tab-inactive-bg:   var(--breeze-theme-titlebar-background-backdrop);",
-    "  --kde-tab-inactive-fg:   var(--breeze-theme-titlebar-foreground-backdrop);",
+    "  --kde-tab-active-bg:   var(--breeze-tooltip-background);",
+    "  ---kde-tab-active-fg:   var(--breeze-theme-fg-color);",
     "  --kde-toolbar-bg:        var(--breeze-theme-header-background);",
     "  --kde-toolbar-fg:        var(--breeze-theme-header-foreground);",
     "  --kde-border:            var(--breeze-borders);",
+    "  --kde-url-bg:            var(--breeze-tooltip-background);",
+    "  --kde-url-fg:            var(--breeze-tooltip-text);",
     "}"
 ]
 
