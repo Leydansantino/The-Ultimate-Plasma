@@ -14,5 +14,3 @@ theme=Klassy
 [plasmarc][Theme]
 name=The-Ultimate-Plasma
 
-[Wallpaper][org.kde.image][General]
-Image=file://@HOME@/.local/share/plasma/look-and-feel/TUP-Aquamarine/contents/wallpapers/aquamarine.png
