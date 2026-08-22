@@ -71,9 +71,19 @@ echo "   ✔ Klassy configuration handled"
 
 echo "→ Removing color schemes..."
 
-rm -f -- \
-    "$HOME/.local/share/color-schemes/TheUltimatePlasmaDark.colors" \
-    "$HOME/.local/share/color-schemes/TheUltimatePlasmaLight.colors"
+color_schemes=(
+    "TheUltimatePlasmaAquamarineLight.colors"
+    "TheUltimatePlasmaCitrineLight.colors"
+    "TheUltimatePlasmaGarnet.colors"
+    "TheUltimatePlasmaObsidianBlue.colors"
+    "TheUltimatePlasmaQuarzo.colors"
+    "TheUltimatePlasmaSapphire.colors"
+    "TheUltimatePlasmaSteel.colors"
+)
+
+for scheme in "${color_schemes[@]}"; do
+    rm -f -- "$HOME/.local/share/color-schemes/$scheme"
+done
 
 echo "   ✔ Color schemes removed"
 
@@ -88,13 +98,23 @@ echo "   ✔ Plasma Desktop Theme removed"
 
 # ── Look and Feel ─────────────────────────────────────────────────────────────
 
-echo "→ Removing Look and Feel..."
+echo "→ Removing Look and Feel variants..."
 
-rm -rf -- \
-    "$HOME/.local/share/plasma/look-and-feel/The Ultimate Plasma Dark" \
-    "$HOME/.local/share/plasma/look-and-feel/The Ultimate Plasma Light"
+look_and_feel_variants=(
+    "TUP-Aquamarine"
+    "TUP-Citrine"
+    "TUP-Garnet"
+    "TUP-Obsidian-Blue"
+    "TUP-Quarzo"
+    "TUP-Sapphire"
+    "TUP-Steel"
+)
 
-echo "   ✔ Look and Feel removed"
+for theme in "${look_and_feel_variants[@]}"; do
+    rm -rf -- "$HOME/.local/share/plasma/look-and-feel/$theme"
+done
+
+echo "   ✔ Look and Feel variants removed"
 
 # ── GTK ───────────────────────────────────────────────────────────────────────
 
