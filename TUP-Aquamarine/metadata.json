@@ -1,0 +1,16 @@
+{
+    "KPackageStructure": "Plasma/LookAndFeel",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Leydan Santino"
+            }
+        ],
+        "Description": "Aquamarine variant of The Ultimate Plasma",
+        "Id": "TUP-Aquamarine",
+        "Name": "The Ultimate Plasma Aquamarine",
+        "Website": "https://github.com/Leydansantino/The-Ultimate-Plasma"
+    },
+    "Keywords": "Desktop;Workspace;Appearance;Look and Feel;",
+    "X-Plasma-APIVersion": "2"
+}
