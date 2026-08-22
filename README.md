@@ -334,8 +334,6 @@ The-Ultimate-Plasma/
 ├── Inter-Italic-VariableFont_opsz,wght.ttf
 │
 ├── Adaptive-Plasma.colorscheme
-├── TheUltimatePlasmaDark.colors
-├── TheUltimatePlasmaLight.colors
 │
 ├── klassyrc
 ├── plasma-org.kde.plasma.desktop-appletsrc
