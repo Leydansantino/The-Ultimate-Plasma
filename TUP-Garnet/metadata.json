@@ -1,0 +1,16 @@
+{
+    "KPackageStructure": "Plasma/LookAndFeel",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Leydan Santino"
+            }
+        ],
+        "Description": "Garnet variant of The Ultimate Plasma",
+        "Id": "TUP-Garnet",
+        "Name": "The Ultimate Plasma Garnet",
+        "Website": "https://github.com/Leydansantino/The-Ultimate-Plasma"
+    },
+    "Keywords": "Desktop;Workspace;Appearance;Look and Feel;",
+    "X-Plasma-APIVersion": "2"
+}

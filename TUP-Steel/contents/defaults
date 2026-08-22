@@ -1,0 +1,15 @@
+[kcminputrc][Mouse]
+cursorTheme=breeze_cursors
+
+[kdeglobals][General]
+ColorScheme=TheUltimatePlasmaSteel
+
+[kdeglobals][KDE]
+widgetStyle=Klassy
+
+[kwinrc][org.kde.kdecoration2]
+library=org.kde.klassy
+theme=Klassy
+
+[plasmarc][Theme]
+name=The-Ultimate-Plasma

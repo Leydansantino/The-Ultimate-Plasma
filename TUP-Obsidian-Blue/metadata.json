@@ -1,0 +1,16 @@
+{
+    "KPackageStructure": "Plasma/LookAndFeel",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Leydan Santino"
+            }
+        ],
+        "Description": "Obsidian Blue variant of The Ultimate Plasma",
+        "Id": "TUP-Obsidian-Blue",
+        "Name": "The Ultimate Plasma Obsidian Blue",
+        "Website": "https://github.com/Leydansantino/The-Ultimate-Plasma"
+    },
+    "Keywords": "Desktop;Workspace;Appearance;Look and Feel;",
+    "X-Plasma-APIVersion": "2"
+}
