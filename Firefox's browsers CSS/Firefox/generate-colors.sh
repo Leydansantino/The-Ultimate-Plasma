@@ -84,7 +84,7 @@ css_lines += [
     "  --kde-tab-inactive-fg:     var(--breeze-theme-fg-color);",
     "  --kde-tab-active-line:   var(--breeze-theme-hovering-selected-bg-color);",
     "  --kde-tab-active-bg:   var(--breeze-tooltip-background);",
-    "  ---kde-tab-active-fg:   var(--breeze-theme-fg-color);",
+    "  --kde-tab-active-fg:   var(--breeze-theme-fg-color);",
     "  --kde-toolbar-bg:         var(--breeze-theme-header-background);",
     "  --kde-toolbar-fg:         var(--breeze-theme-header-foreground);",
     "  --kde-border:             var(--breeze-borders);",
