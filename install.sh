@@ -76,10 +76,36 @@ echo "   ✔ Look and Feel installed"
 
 # ── 6. GTK ────────────────────────────────────────────────────────────────────
 echo "→ [6/7] Installing GTK 3 and GTK 4 / Libadwaita themes..."
-mkdir -p ~/.config/gtk-3.0
-mkdir -p ~/.config/gtk-4.0
-cp "$SCRIPT_DIR/gtk-3.0/gtk.css"               ~/.config/gtk-3.0/gtk.css
-cp "$SCRIPT_DIR/gtk-4.0/gtk.css"               ~/.config/gtk-4.0/gtk.css
+
+GTK_BACKUP_DIR="$HOME/.local/state/the-ultimate-plasma/backups/gtk"
+mkdir -p "$GTK_BACKUP_DIR"
+mkdir -p "$HOME/.config/gtk-3.0"
+mkdir -p "$HOME/.config/gtk-4.0"
+
+backup_gtk_css() {
+    local version="$1"
+    local target="$HOME/.config/gtk-${version}/gtk.css"
+    local backup="$GTK_BACKUP_DIR/gtk-${version}.css"
+    local absent="$GTK_BACKUP_DIR/gtk-${version}.absent"
+
+    # Preserve the pre-TUP state only once.
+    if [[ ! -e "$backup" && ! -e "$absent" ]]; then
+        if [[ -f "$target" ]]; then
+            cp -a "$target" "$backup"
+            echo "   ✔ Backed up existing GTK ${version} CSS"
+        else
+            touch "$absent"
+            echo "   • No existing GTK ${version} CSS to back up"
+        fi
+    fi
+}
+
+backup_gtk_css "3.0"
+backup_gtk_css "4.0"
+
+cp "$SCRIPT_DIR/gtk-3.0/gtk.css" "$HOME/.config/gtk-3.0/gtk.css"
+cp "$SCRIPT_DIR/gtk-4.0/gtk.css" "$HOME/.config/gtk-4.0/gtk.css"
+
 echo "   ✔ GTK installed"
 
 echo "   ↻ Applying Flatpak permissions for themes..."
