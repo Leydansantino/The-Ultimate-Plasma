@@ -70,10 +70,39 @@ rm -rf ~/.local/share/plasma/look-and-feel/The\ Ultimate\ Plasma\ Light
 echo "   ✔ Look and Feel removed"
 
 # ── GTK ───────────────────────────────────────────────────────────────────────
-echo "→ Removing GTK configuration..."
-rm -f ~/.config/gtk-3.0/gtk.css
-rm -f ~/.config/gtk-4.0/gtk.css
-echo "   ✔ GTK configuration removed"
+echo "→ Restoring GTK configuration..."
+
+GTK_BACKUP_DIR="$HOME/.local/state/the-ultimate-plasma/backups/gtk"
+
+restore_gtk_css() {
+    local version="$1"
+    local target="$HOME/.config/gtk-${version}/gtk.css"
+    local backup="$GTK_BACKUP_DIR/gtk-${version}.css"
+    local absent="$GTK_BACKUP_DIR/gtk-${version}.absent"
+
+    if [[ -f "$backup" ]]; then
+        mkdir -p "$(dirname "$target")"
+        cp -a "$backup" "$target"
+        rm -f "$backup" "$absent"
+        echo "   ✔ Restored previous GTK ${version} CSS"
+
+    elif [[ -f "$absent" ]]; then
+        rm -f "$target"
+        rm -f "$absent"
+        echo "   ✔ Removed TUP GTK ${version} CSS"
+
+    else
+        echo "   • No GTK ${version} backup state found; leaving current CSS untouched"
+    fi
+}
+
+restore_gtk_css "3.0"
+restore_gtk_css "4.0"
+
+rmdir "$GTK_BACKUP_DIR" 2>/dev/null || true
+rmdir "$HOME/.local/state/the-ultimate-plasma/backups" 2>/dev/null || true
+
+echo "   ✔ GTK configuration restored"
 
 # ── Konsole ───────────────────────────────────────────────────────────────────
 echo "→ Removing Konsole configuration..."

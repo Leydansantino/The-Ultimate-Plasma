@@ -1,5 +1,3 @@
-@import url('libadwaita.css');
-@import url('libadwaita-tweaks.css');
 @import 'colors.css';
 
 @define-color window_bg_color @content_view_bg_breeze;
