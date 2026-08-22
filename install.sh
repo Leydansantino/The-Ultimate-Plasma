@@ -69,6 +69,9 @@ command_exists grep ||
 command_exists sort ||
     die "Required command not found: sort"
 
+command_exists sed ||
+    die "Required command not found: sed"
+
 command_exists fc-cache ||
     die "Required command not found: fc-cache"
 
@@ -109,8 +112,13 @@ fi
 required_files=(
     "Inter-VariableFont_opsz,wght.ttf"
     "Inter-Italic-VariableFont_opsz,wght.ttf"
-    "TheUltimatePlasmaDark.colors"
-    "TheUltimatePlasmaLight.colors"
+    "TheUltimatePlasmaAquamarineLight.colors"
+    "TheUltimatePlasmaCitrineLight.colors"
+    "TheUltimatePlasmaGarnet.colors"
+    "TheUltimatePlasmaObsidianBlue.colors"
+    "TheUltimatePlasmaQuarzo.colors"
+    "TheUltimatePlasmaSapphire.colors"
+    "TheUltimatePlasmaSteel.colors"
     "Adaptive-Plasma.colorscheme"
     "gtk-3.0/gtk.css"
     "gtk-4.0/gtk.css"
@@ -119,8 +127,13 @@ required_files=(
 
 required_dirs=(
     "The-Ultimate-Plasma"
-    "The Ultimate Plasma Dark"
-    "The Ultimate Plasma Light"
+    "TUP-Aquamarine"
+    "TUP-Citrine"
+    "TUP-Garnet"
+    "TUP-Obsidian-Blue"
+    "TUP-Quarzo"
+    "TUP-Sapphire"
+    "TUP-Steel"
 )
 
 for file in "${required_files[@]}"; do
@@ -183,15 +196,24 @@ fi
 
 # ── 3. Color schemes ──────────────────────────────────────────────────────────
 echo "→ [3/7] Installing color schemes..."
-install_file \
-    "$SCRIPT_DIR/TheUltimatePlasmaDark.colors" \
-    "$HOME/.local/share/color-schemes/TheUltimatePlasmaDark.colors"
 
-install_file \
-    "$SCRIPT_DIR/TheUltimatePlasmaLight.colors" \
-    "$HOME/.local/share/color-schemes/TheUltimatePlasmaLight.colors"
+color_schemes=(
+    "TheUltimatePlasmaAquamarineLight.colors"
+    "TheUltimatePlasmaCitrineLight.colors"
+    "TheUltimatePlasmaGarnet.colors"
+    "TheUltimatePlasmaObsidianBlue.colors"
+    "TheUltimatePlasmaQuarzo.colors"
+    "TheUltimatePlasmaSapphire.colors"
+    "TheUltimatePlasmaSteel.colors"
+)
+
+for scheme in "${color_schemes[@]}"; do
+    install_file \
+        "$SCRIPT_DIR/$scheme" \
+        "$HOME/.local/share/color-schemes/$scheme"
+done
+
 echo "   ✔ Color schemes installed"
-
 # ── 4. Plasma Desktop Theme ───────────────────────────────────────────────────
 echo "→ [4/7] Installing Plasma Desktop Theme..."
 install_tree \
@@ -209,16 +231,35 @@ else
 fi
 
 # ── 5. Look and Feel ──────────────────────────────────────────────────────────
-echo "→ [5/7] Installing Look and Feel (dark and light)..."
-install_tree \
-    "$SCRIPT_DIR/The Ultimate Plasma Dark" \
-    "$HOME/.local/share/plasma/look-and-feel/The Ultimate Plasma Dark"
+echo "→ [5/7] Installing Look and Feel variants..."
 
-install_tree \
-    "$SCRIPT_DIR/The Ultimate Plasma Light" \
-    "$HOME/.local/share/plasma/look-and-feel/The Ultimate Plasma Light"
-echo "   ✔ Look and Feel installed"
+look_and_feel_variants=(
+    "TUP-Aquamarine"
+    "TUP-Citrine"
+    "TUP-Garnet"
+    "TUP-Obsidian-Blue"
+    "TUP-Quarzo"
+    "TUP-Sapphire"
+    "TUP-Steel"
+)
 
+LOOKANDFEEL_ROOT="$HOME/.local/share/plasma/look-and-feel"
+
+for theme in "${look_and_feel_variants[@]}"; do
+    install_tree \
+        "$SCRIPT_DIR/$theme" \
+        "$LOOKANDFEEL_ROOT/$theme"
+
+    layout_file="$LOOKANDFEEL_ROOT/$theme/contents/layouts/org.kde.plasma.desktop-layout.js"
+
+    if [[ -f "$layout_file" ]]; then
+        sed -i \
+            "s|@TUP_LOOKANDFEEL_ROOT@|$LOOKANDFEEL_ROOT|g" \
+            "$layout_file"
+    fi
+done
+
+echo "   ✔ Look and Feel variants installed"
 # ── 6. GTK ────────────────────────────────────────────────────────────────────
 echo "→ [6/7] Installing GTK 3 and GTK 4 theming..."
 
@@ -311,8 +352,13 @@ echo "(Read the klassy-aurora-kinoite.md guide in this repository if you use Aur
 echo ""
 echo "Then select your theme in:"
 echo "  System Settings → Global Theme"
-echo "    → The Ultimate Plasma Dark"
-echo "    → The Ultimate Plasma Light"
+echo "    → The Ultimate Plasma Aquamarine"
+echo "    → The Ultimate Plasma Citrine"
+echo "    → The Ultimate Plasma Garnet"
+echo "    → The Ultimate Plasma Obsidian Blue"
+echo "    → The Ultimate Plasma Quarzo"
+echo "    → The Ultimate Plasma Sapphire"
+echo "    → The Ultimate Plasma Steel"
 echo ""
 echo "And enable the components in:"
 echo "  Window Decorations  → Klassy"

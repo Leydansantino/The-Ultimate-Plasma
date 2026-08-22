@@ -131,7 +131,7 @@ ForegroundPositive=112,178,78
 ForegroundVisited=138,115,162
 
 [General]
-ColorScheme=TheUltimatePlasmaDark
+ColorScheme=TheUltimaPlsmaObsidianBlue
 Name=The Ultimate Plasma Obsidian Blue
 TintFactor=0.2
 shadeSortColumn=true

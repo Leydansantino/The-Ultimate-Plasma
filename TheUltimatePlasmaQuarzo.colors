@@ -131,9 +131,9 @@ ForegroundPositive=36,160,88
 ForegroundVisited=138,82,168
 
 [General]
-ColorScheme=TheUltimatePlasmaLight
+ColorScheme=TheUltimatePlasmaQuarzo
 Name=The Ultimate Plasma Quarzo
-TintFactor=0.2
+TintFactor=0.15
 shadeSortColumn=true
 
 [KDE]
