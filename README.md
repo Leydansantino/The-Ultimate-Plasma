@@ -340,7 +340,8 @@ The-Ultimate-Plasma/
 ├── TheUltimatePlasmaObsidianBlue.colors
 ├── TheUltimatePlasmaQuarzo.colors
 ├── TheUltimatePlasmaSapphire.colors
-├── TheUltimatePlasmaSteel.colors│
+├── TheUltimatePlasmaSteel.colors
+│
 ├── klassyrc
 ├── plasma-org.kde.plasma.desktop-appletsrc
 ├── sync_konsole.sh
