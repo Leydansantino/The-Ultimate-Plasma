@@ -4,6 +4,10 @@ A complete theme for KDE Plasma that unifies the look of Qt, GTK3, GTK4, and Lib
 
 **Compatible with Aurora, Bazzite, and Fedora Kinoite — Plasma 6.6+**
 
+## Unified Application Styling
+
+![The Ultimate Plasma — Qt, GTK, and browser integration](./screenshots/tup-unified-apps.png)
+
 ---
 
 ## 🔒 System Integrity First
