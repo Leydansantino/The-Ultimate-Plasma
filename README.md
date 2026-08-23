@@ -334,7 +334,13 @@ The-Ultimate-Plasma/
 ├── Inter-Italic-VariableFont_opsz,wght.ttf
 │
 ├── Adaptive-Plasma.colorscheme
-│
+├── TheUltimatePlasmaAquamarineLight.colors
+├── TheUltimatePlasmaCitrineLight.colors
+├── TheUltimatePlasmaGarnet.colors
+├── TheUltimatePlasmaObsidianBlue.colors
+├── TheUltimatePlasmaQuarzo.colors
+├── TheUltimatePlasmaSapphire.colors
+├── TheUltimatePlasmaSteel.colors│
 ├── klassyrc
 ├── plasma-org.kde.plasma.desktop-appletsrc
 ├── sync_konsole.sh
